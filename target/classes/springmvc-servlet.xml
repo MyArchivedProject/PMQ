@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd     
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+	<!-- 对web包中的Controller进行扫描，以完成Bean创建和自动依赖注入的功能 -->
+	<context:component-scan base-package="pmq.controller" />
+
+
+	<!-- 配置处理映射器和适配器 ,拦截器 。。validator要使用的服务端验证配置 -->
+	<mvc:annotation-driven validator="validator">
+		<!--自定义消息转换器的编码,解决后台传输json回前台时，中文乱码问题 -->
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=utf-8</value>
+						<value>text/html;charset=utf-8</value>
+						<!-- application 可以在任意 form 表单里面 enctype 属性默认找到 -->
+						<value>application/x-www-form-urlencoded</value>
+					</list>
+				</property>
+			</bean>
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- 视图解析器 -->
+	<!--对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".html">
+		</property>
+	</bean>
+
+	<!-- 使静态资源不被拦截（*.js,*.css...） -->
+	<mvc:default-servlet-handler />
+
+	<!-- 表单验证框架的配置 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		<property name="validationMessageSource" ref="validatemessageSource"></property>
+	</bean>
+	<!-- 配置错误信息用于国际化信息验证 messageSource可以使用也可以不用，默认使用classpath下的 ValidationMessages.properties -->
+	<bean id="validatemessageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- 资源文件名 -->
+		<property name="basenames">
+			<list>
+				<value>classpath:validatemessages</value>
+			</list>
+		</property>
+		<property name="fileEncodings" value="utf-8" />  <!-- 资源文件编码格式 -->
+		<property name="cacheSeconds" value="60" /> <!-- 对资源文件内容缓存时间，单位秒 -->
+		<property name="defaultEncoding" value="UTF-8" /> <!-- 解决可能存在的乱码问题 -->
+	</bean>
+
+	<!--拦截器配置：/**表示拦截所有controller -->
+	<!-- 这两条语句好像不能使其不拦截web-inf下的路径，所以我在拦截器类里用正则表达式来代替了 
+	<mvc:exclude-mapping path="/login" /> 
+	<mvc:exclude-mapping path="/validate" /> -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<bean class="pmq.utils.OnlineHandlerInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+	<!--拦截器,解决来自于前端表单乱码的问题 ,已用滤器代替拦截器 -->
+	<!-- <mvc:interceptor> <mvc:mapping path="/**" /> <bean class="pmq.utils.EncodingInterceptor" 
+		/> </mvc:interceptor> </mvc:interceptors> -->
+	<!-- 上传文件 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- 内存大小达到2m生成临时文件 -->
+		<property name="maxInMemorySize" value="20480" />
+		<!-- 设定文件上传的最大值为5MB，5*1024*1024 -->
+		<property name="maxUploadSize" value="5242880" />
+	</bean>
+
+</beans>

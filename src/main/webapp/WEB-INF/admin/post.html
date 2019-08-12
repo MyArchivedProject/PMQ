@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- 测试职位管理界面 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/css/post.css" />
+<script src="/PMQ/static/admin/js/post.js"></script>
+</head>
+<body>
+	<div id="post">
+		<div id="post-manage">
+		<div>
+			<div  class="opt-div-but-common">
+				<span>职位:</span><input type="text" id="by-post"
+					class="opt-condic-common">
+					<button class="opt-but-common opt-but-post" onClick="searchBy()">查询</button>
+					<button class="opt-but-common opt-but-post" onClick="clearInput()">清空</button>
+			</div>
+			<hr class="opt-hr-common">
+		</div>
+			<button id="add-but" onClick="openAddPost()">+增加职位</button>
+			<table cellspacing="0">
+				<thead align="left">
+					<tr>
+						<th>序号</th>
+						<th>职位</th>
+						<th>二级指标数量</th>
+						<th>客观题总量</th>
+						<th>主观题总量</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<div id="tfoot">
+				<button onClick="jumpStart()">第一页</button>
+				<button onClick="jumpPre()">上一页</button>
+				<button onClick="jumpNext()">下一页</button>
+				<button onClick="jumpEnd()">最后一页</button>
+				第<span id="spanCurrentPage"></span>页/共<span id="spanTotalPage"></span>页
+			</div>
+		</div>
+	</div>
+</body>
+<div class="addPost-dowebok" hidden="hidden">
+	<h3>增加职位操作</h3>
+	<form id="form-add">
+		<div class="addPost-item">
+			<span>职位名称 : </span><input type="text" name="post"  maxlength="15"></input>
+			<p id="tip-addPost" >.</p>
+		</div>
+	</form>
+	<div class="addPost-button">
+		<button id="addPost-submit" onClick="addPost()">确定</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button onClick="quitAddPost()">返回</button>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/operateCSS/addPost.css" />
+</html>

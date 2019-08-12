@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+	 http://www.springframework.org/schema/beans 
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd               
+     http://www.springframework.org/schema/tx 
+     http://www.springframework.org/schema/tx/spring-tx.xsd  
+     http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 加载pojo类 -->
+	<bean id="question" class="pmq.pojo.Question"></bean>
+	<bean id="target" class="pmq.pojo.Target"></bean>
+	<bean id="evaluation" class="pmq.pojo.Evaluation"></bean>
+	<bean id="admin" class="pmq.pojo.Admin"></bean>
+	<bean id="paper" class="pmq.pojo.Paper" scope="prototype"></bean>
+	<bean id="tester" class="pmq.pojo.Tester"></bean>
+
+	<!-- 为了可以使用注解直接获取dao操作对象，进行一下定义自动扫描dao包下的所有接口 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="pmq.dao" />
+	</bean>
+
+	<!-- 开启service注解，扫描service包下所有的service类 -->
+	<context:component-scan base-package="pmq.service" />
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:jdbc.properties</value>
+		</property>
+	</bean>
+	<!-- 使其可以加载.properties文件
+	<context:property-placeholder location="classpath:jdbc.properties" /> -->
+	<!-- 数据库连接池，使用dbcp数据库连接池，必须导入dbcp相关的jar包 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${db.driver}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+		<!--连接池的最大数据库连接数 -->
+		<property name="maxActive" value="255" />
+		<!--最大等待连接中的数量 -->
+		<property name="maxIdle" value="5" />
+		<!--最大等待毫秒数 -->
+		<property name="maxWait" value="10000" />
+	</bean>
+	<!-- 整合sping和mybatais -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--dataSource属性指定要用到的连接池 -->
+		<property name="dataSource" ref="dataSource" />
+		<!--加载dao接口的映射文件 -->
+		<property name="mapperLocations" value="classpath:pmq/mapper/*.xml" />
+		<!--自动给pojo类起别名，value为pojo类所在包名，Spring会自动查找其下的类 -->
+		<property name="typeAliasesPackage" value="pmq.pojo" />
+	</bean>
+
+	<!-- 使用注解开启事务管理 -->
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<import resource="kaptcha.xml"/>
+
+	<!-- aop切面配置 暂时不用了，决定使用springMVC的拦截器来进行登录验证
+	<bean id="onLineBefore" class="pmq.utils.OnLine" />
+	<aop:config>
+		<aop:pointcut expression="execution(* pmq..service.impl.*.*(..))"
+			id="pointcut" />
+		<aop:advisor advice-ref="onLineBefore" pointcut-ref="pointcut" />
+	</aop:config>
+	-->
+	
+</beans>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=0.5" />
+<style type="text/css">
+html {
+	height: 100%;
+}
+
+body {
+	/* font-size:20px; 使用.pdf代替此修饰，因为此修饰会影响pdf的分页*/
+	height: 100%;
+	background: #fff url(/PMQ/static/front/images/report-background.jpeg) no-repeat;
+	background-attachment: fixed;
+}
+#report{
+	    background-color: rgba(255, 255, 255, 0.7);
+	    padding-bottom: 10px;
+}
+.pdf{
+	font-size:20px;
+}
+#person{
+	padding-bottom: 10px;
+}
+.dowebokone {
+	margin-left:auto;
+	margin-right:auto;
+	width:  1164.56px;
+	height: auto;
+	border-bottom: 2px solid #cc6600;
+}
+
+
+.text1 {
+	font-family: 'SimHei';
+	font-weight: 700;
+	font-size: 36px;
+	color: #000099;
+	text-align: center;
+	padding-bottom: 20px;
+	padding-top: 10px;
+	letter-spacing: 5px;
+}
+
+#download {
+	float: left;
+	width: 125px;
+	height: 40px;
+	font-size: 15px;
+	font-weight: bolder;
+	border-radius: 20px;
+	border: 2px solid #000;
+	background-color: #ccffff;
+	outline: none;
+}
+/* 为了使标题居中 */
+.right-a{
+	float: right;
+	width: 125px;
+	height: 40px;
+	visibility: hidden
+}
+#download:hover {
+	background-color: #fff;
+}
+.text3 {
+	font-size: 20px;
+	font-weight: bold;
+}
+.doweboktwo {
+	margin-left:auto;
+	margin-right:auto;
+	width:  1164.56px;
+	height: auto;
+
+}
+
+.text4 {
+	font-weight: bolder;
+	font-size: 30px;
+	color: #000099;
+	padding-bottom: 15px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 80%;
+	margin: 10px auto;
+}
+
+table, th, td {
+	border: 2px solid black;
+	text-align: center;
+}
+
+#div-eva {
+	margin: 0 auto;
+	/* width: 676px; */
+	width: 80%;
+	height: auto;
+	border: solid 2px
+}
+#report-eva{
+	margin-bottom: 0px;
+}
+.little-title{
+	font-size: 24px;
+	margin: 0px 0px;
+}
+</style>
+<script src="/PMQ/static/common/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/PMQ/static/common/jspdf.min.js"></script>
+<script type="text/javascript" src="/PMQ/static/front/js/report.js"></script>
+<script>
+	if (window.history && window.history.pushState) {
+		$(window).on('popstate', function() {
+			window.history.pushState('forward', null, '#');
+			window.history.forward(1);
+			//alert("不可回退");
+		})
+	}
+	if (window.ActiveXObject || "ActiveXObject" in window) {
+		window.location.href = "/PMQ/front/report#"
+		/* var ua = window.navigator.userAgent;
+		if(ua.indexOf('MSIE 6') != -1 || ua.indexOf('MSIE 7') != -1 
+				|| ua.indexOf('MSIE 8') != -1 || ua.indexOf('MSIE 9') != -1){
+			window.location.href="/PMQ/front/report#"
+		}else{
+			window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+			window.history.forward(1);
+		} */
+	}
+
+	/* 判断是否从head跳转过来的 */
+	/* url = document.referrer.toLowerCase();
+	if (url.indexOf("head") == -1) {
+		alert(url)
+		window.location.href = "register"
+	} */
+	
+</script>
+</head>
+<body>
+	<div id="report">
+		<div class="dowebokone">
+			<button id="download" onClick="downloadPDF()">下载测试结果</button>
+			<button  class="right-a">下载测试结果</button>
+			<div class="text1 pdf">
+				<span>工程咨询人员胜任力综合测试报告</span>
+			</div>
+			<div id="person" class="pdf">
+				<div class="text3" style="padding-top: 10px;">
+					<span>姓名 : </span> <span id="name"></span>
+				</div>
+				<div class="text3">
+					<span>邮箱 : </span> <span id="email"></span>
+				</div>
+				<div class="text3">
+					<span>手机 : </span> <span id="tele"></span>
+				</div>
+			</div>
+			<!-- <div class="text3">
+				<span>测评时间 : </span> <span>aa</span>
+				</div> -->
+		</div>
+		<div class="doweboktwo">
+			<div class="text4 pdf">
+				<span>报告大纲 : </span>
+			</div>
+			<div class="pdf">
+				<p class="little-title">1. 测评得分 : </p>
+				<div>
+					<table border="1">
+						<tr>
+							<th>测评内容</th>
+							<th>专业知识</th>
+							<th>工作经验</th>
+							<th>工作技能</th>
+							<th>工作风格</th>
+							<th>工作价值观</th>
+							<th>总分</th>
+						</tr>
+						<tr>
+							<th>您的得分</th>
+							<td id="know-score">已提交成功，等待反馈中。</td>
+							<td id="experience-score">已提交成功，等待反馈中。</td>
+							<td id="skill-score">已提交成功，等待反馈中。</td>
+							<td id="style-score">已提交成功，等待反馈中。</td>
+							<td id="value-score">已提交成功，等待反馈中。</td>
+							<td id="total-score">已提交成功，等待反馈中。</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div>
+				<p class="pdf little-title">2. 评&nbsp;&nbsp;价 :</p>
+				<div id="div-eva">
+					<ol id="report-eva">
+						 <!-- <li class="pdf">成就动机：等级A
+							<ul type="disc">
+								<li>有挑战的目标，并能够通过不断学习以高标准的要求来完成工作任务</li>
+								<li>能够在工作过程中不断总结创新，并能够将其应用于以后的工作中</li>
+								<li>不满足于现有业绩，不断追求卓越</li>
+							</ul>
+						</li> -->					
+					</ol>
+				</div>
+			</div>
+			<div class="pdf">
+				<p class="little-title">3. 提高建议 :</p>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;建议您可以积极地通过各种途径学习项目管理的基础方法和知识，并结合您自己
+					的经验和机构的项目管理规范进行思考，优化、改进你的项目管理方法和技巧，以便把自己 提升到更高的职业发展阶段。</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

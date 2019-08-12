@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmq.dao.EvaluationMapper" >
+  <resultMap id="BaseResultMap" type="pmq.pojo.Evaluation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="eva_a" property="evaA" jdbcType="VARCHAR" />
+    <result column="mini_a" property="miniA" jdbcType="INTEGER" />
+    <result column="eva_b" property="evaB" jdbcType="VARCHAR" />
+    <result column="mini_b" property="miniB" jdbcType="INTEGER" />
+    <result column="eva_c" property="evaC" jdbcType="VARCHAR" />
+    <result column="mini_c" property="miniC" jdbcType="INTEGER" />
+    <result column="eva_d" property="evaD" jdbcType="VARCHAR" />
+    <result column="mini_d" property="miniD" jdbcType="INTEGER" />
+    <result column="eva_e" property="evaE" jdbcType="VARCHAR" />
+    <result column="mini_e" property="miniE" jdbcType="INTEGER" />
+    <result column="eva_f" property="evaF" jdbcType="VARCHAR" />
+    <result column="mini_f" property="miniF" jdbcType="INTEGER" />
+    
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="multi_index" property="multiIndex" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+     <result column="flag" property="flag" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from evaluation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pmq.pojo.Evaluation" >
+    insert into evaluation ( eva_a, 
+      mini_a, eva_b, mini_b, 
+      eva_c, mini_c, eva_d, 
+      mini_d, eva_e, mini_e, 
+      eva_f, mini_f,
+      post,multi_index,title,
+      flag)
+    values ( #{evaA,jdbcType=VARCHAR}, 
+      #{miniA,jdbcType=INTEGER}, #{evaB,jdbcType=VARCHAR}, #{miniB,jdbcType=INTEGER}, 
+      #{evaC,jdbcType=VARCHAR}, #{miniC,jdbcType=INTEGER}, #{evaD,jdbcType=VARCHAR}, 
+      #{miniD,jdbcType=INTEGER}, #{evaE,jdbcType=VARCHAR}, #{miniE,jdbcType=INTEGER}, 
+      #{evaF,jdbcType=VARCHAR}, #{miniF,jdbcType=INTEGER},
+      #{post,jdbcType=VARCHAR}, #{multiIndex,jdbcType=INTEGER} , #{title,jdbcType=VARCHAR},
+      #{flag,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="pmq.pojo.Evaluation" >
+    update evaluation
+    set 
+      eva_a = #{evaA,jdbcType=VARCHAR},
+      mini_a = #{miniA,jdbcType=INTEGER},
+      eva_b = #{evaB,jdbcType=VARCHAR},
+      mini_b = #{miniB,jdbcType=INTEGER},
+      eva_c = #{evaC,jdbcType=VARCHAR},
+      mini_c = #{miniC,jdbcType=INTEGER},
+      eva_d = #{evaD,jdbcType=VARCHAR},
+      mini_d = #{miniD,jdbcType=INTEGER},
+      eva_e = #{evaE,jdbcType=VARCHAR},
+      mini_e = #{miniE,jdbcType=INTEGER},
+      eva_f = #{evaF,jdbcType=VARCHAR},
+      mini_f = #{miniF,jdbcType=INTEGER},
+      multi_index= #{multiIndex,jdbcType=INTEGER},
+      title= #{title,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, index_id, eva_a, mini_a, eva_b, mini_b, eva_c, mini_c, eva_d, mini_d, 
+    eva_e, mini_e, eva_f, mini_f,multi_index,post,title,flag
+    from evaluation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, index_id, eva_a, mini_a, eva_b, mini_b, eva_c, mini_c, eva_d, mini_d, 
+    eva_e, mini_e, eva_f, mini_f,multi_index,post,title,flag
+    from evaluation
+  </select>
+  
+  <insert id="insertOrigin" >
+    insert into evaluation ( index_id, eva_a, 
+      mini_a, eva_b, mini_b, 
+      eva_c, mini_c, eva_d, 
+      mini_d, eva_e, mini_e, 
+      eva_f, mini_f,post)
+    values ( #{indexId,jdbcType=INTEGER},
+     "", 0, "", 0, "",0, "", 0, "", 0, "", 0,#{post,jdbcType=VARCHAR})
+  </insert>
+  
+ <!--  <update id="updateByIndexId" parameterType="pmq.pojo.Evaluation">
+    update evaluation
+    set 
+      eva_a = #{evaA,jdbcType=VARCHAR},
+      mini_a = #{miniA,jdbcType=INTEGER},
+      eva_b = #{evaB,jdbcType=VARCHAR},
+      mini_b = #{miniB,jdbcType=INTEGER},
+      eva_c = #{evaC,jdbcType=VARCHAR},
+      mini_c = #{miniC,jdbcType=INTEGER},
+      eva_d = #{evaD,jdbcType=VARCHAR},
+      mini_d = #{miniD,jdbcType=INTEGER},
+      eva_e = #{evaE,jdbcType=VARCHAR},
+      mini_e = #{miniE,jdbcType=INTEGER},
+      eva_f = #{evaF,jdbcType=VARCHAR},
+      mini_f = #{miniF,jdbcType=INTEGER},
+       post = #{post,jdbcType=VARCHAR}
+    where index_id = #{indexId,jdbcType=INTEGER}
+  </update> -->
+  
+  <select id="selectAllByPost" resultMap="BaseResultMap" parameterType="String">
+    select id, index_id, eva_a, mini_a, eva_b, mini_b, eva_c, mini_c, eva_d, mini_d, 
+    eva_e, mini_e, eva_f, mini_f,post,multi_index,title,flag
+    from evaluation
+    where post = #{post}
+  </select>
+  <select id="selectAllByPostF" resultMap="BaseResultMap" parameterType="String">
+    select id, index_id, eva_a, mini_a, eva_b, mini_b, eva_c, mini_c, eva_d, mini_d, 
+    eva_e, mini_e, eva_f, mini_f,post,multi_index,title,title,flag
+    from evaluation
+    where post = #{post} and flag=1
+  </select>
+  
+  <delete id="deleteByPost" parameterType="java.lang.String" >
+    delete from evaluation
+    where post = #{post,jdbcType=VARCHAR}
+  </delete>
+  <select id="selectAllCode" resultType="java.lang.String" >
+    select code
+    from evaluation
+  </select>
+   
+ <!--  <delete id="deleteByIndexId" parameterType="java.lang.Integer" >
+    delete from evaluation
+    where index_id = #{indexId,jdbcType=INTEGER}
+  </delete> -->
+  
+  <select id="selectAllByEvaFlag" resultMap="BaseResultMap" parameterType="Evaluation">
+    select id, index_id, eva_a, mini_a, eva_b, mini_b, eva_c, mini_c, eva_d, mini_d, 
+    eva_e, mini_e, eva_f, mini_f,post,title,multi_index,flag
+    from evaluation
+    where post like "%"#{post}"%" and title like "%"#{title}"%" and flag =#{flag}
+  </select>
+  
+   <select id="selectAllByEva" resultMap="BaseResultMap" parameterType="Evaluation">
+    select id, index_id, eva_a, mini_a, eva_b, mini_b, eva_c, mini_c, eva_d, mini_d, 
+    eva_e, mini_e, eva_f, mini_f,post,title,multi_index,flag
+    from evaluation
+    where post like "%"#{post}"%" and title like "%"#{title}"%" 
+  </select>
+  
+  <select id="selectEvaByPost" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(id)
+    from evaluation
+    where title = #{title}
+  </select>
+</mapper>

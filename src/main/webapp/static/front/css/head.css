@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+ * {
+	margin: 0;
+} 
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	/* background: #fff url(../images/register-background.jpeg) no-repeat; */
+	background: #fff url(../images/register-background.jpeg);
+}
+
+.head {
+	width: 970px;
+	height: 80px;
+	overflow: hidden;
+	/* position: relative; */
+	margin: 50px auto;
+	
+}
+
+.one {
+	margin-left: 8px;
+	float: left;
+	width: 90px;
+	height: 0;
+	border-top: 30px solid #fff;
+	border-bottom: 30px solid #fff;
+	border-left: 15px solid transparent;
+	position: relative;
+	left: 20px;
+	top: 10px;
+}
+.one:after {
+	content: "";
+	display: block;
+	border-top: 30px solid transparent;
+	border-bottom: 30px solid transparent;
+	border-left: 20px solid #fff;
+	position: absolute;
+	left: 90px;
+	top: -30px;
+}
+/* 当导航栏被选中时的颜色 */
+.oneSelected{
+	border-top: 30px solid yellow;
+	border-bottom: 30px solid yellow;
+}
+.oneSelected:after{
+	border-left: 20px solid yellow;
+}
+/* 设置容纳内容的div大小 */
+#content{
+	margin: auto auto;
+}
+.one span {
+	position: relative;
+	left: 10px;
+	top: -10px;
+}
+
+#first {
+	border-top: 30px solid #ccffff;
+	border-bottom: 30px solid #ccffff;
+}
+
+#first:after {
+	border-left: 20px solid #ccffff;
+}
+
+.button {
+	padding-top:100px;
+	text-align:center;
+	left: 290px;
+	top: 380px;
+}
+
+.button button {
+	background: #fff;
+	border: 1px solid #000;
+	border-radius: 50px;
+	padding: 8px 40px;
+	font-size: 15px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+.button button:hover {
+	background-color: #ccffff;
+}
+
+.tip {
+	display: none;
+	position: absolute;
+	left: 55%;
+	top: 70%;
+	background-color: #fff;
+	width: 350px;
+	height: 220px;
+	margin: -300px 0 0 -215px;
+	border: 1px solid #fff;
+	border-radius: 20px;
+	box-shadow: darkgrey 10px 10px 30px 5px;
+}
+
+.tipbutton {
+	position: relative;
+	left: 32px;
+	top: 35px;
+}
+
+.tipbutton button {
+	background: #fff;
+	border: 1px solid #000;
+	border-radius: 50px;
+	padding: 8px 40px;
+	font-size: 6px;
+}
+
+.tipbutton button:hover {
+	background-color: #ccffff;
+}

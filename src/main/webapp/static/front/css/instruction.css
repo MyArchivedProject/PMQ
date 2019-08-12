@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.dowebok {
+	/* position: absolute;
+	left: 22%;
+	top: 30%; */
+	margin:auto auto;
+	width: 876px;
+	height: auto;
+	background-color: rgba(255, 255, 255, 0.4);
+	border: 1px solid #fff;
+}
+.purpose {
+	position: relative;
+	left: 29%;
+	top: 5%;
+	line-height: 250%
+}
+
+
+.start{
+	position: relative;
+	left: 80%;	
+	font-size: 17px;
+	width: 140px;
+	height: 40px;
+	border: 1px solid #000;
+	border-radius: 20px;
+	background-color: #fff;
+	margin: 10px 0px;
+}
+
+.start:hover {
+	background-color: #ccffff;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>工程咨询人员胜任力测评</title>
+<link href="../static/front/css/register.css" rel="stylesheet"
+	type="text/css" />
+<script>
+//解决游览器对jQuery的兼容性问题 
+var ua = window.navigator.userAgent;
+if(ua.indexOf('MSIE 6') != -1 || ua.indexOf('MSIE 7') != -1 || ua.indexOf('MSIE 8') != -1){
+	window.location.href="/PMQ/compabilityError.html"
+	//document.write("<script src='/PMQ/static/common/jquery-1.11.3.min.js'><\/script>"); 
+}else{
+	document.write("<script src='/PMQ/static/common/jquery-3.3.1.min.js'><\/script>"); 
+	if (!!window.ActiveXObject || "ActiveXObject" in window){
+		alert("如果使用IE游览器进行测试最终将无法下载测试报告!\n推荐使用Google游览器进行测试!")
+	}
+};
+
+</script>
+<script src="/PMQ/static/front/js/register.js"></script>
+
+</head>
+<body>
+	<div class="dowebok">
+		<div class="text1">
+			<p>工程咨询人员胜任力测评!</p>
+		</div>
+		<div class="text2">
+			<p>信息填写</p>
+		</div>
+		<div class="text3">
+			<p>请输入正确的信息，以便公司及时联系您，开始测试后您将无法返回此界面</p>
+		</div>
+		<form   method="post" id="register-info">
+			<div class="form-item">
+				<input id="name" type="text" autocomplete="off"
+					placeholder="请输入您的真实姓名" name="name" >
+				<p class="tip" id="tip-name">用户名为2至10个中英文字符</p>
+			</div>
+			<div class="form-item">
+				<input id="email" type="text" autocomplete="off"
+					placeholder="请输入您的常用邮箱" name="email">
+				<p class="tip" id="tip-email">请输入正确的邮箱格式</p>
+			</div>
+			<div class="form-item">
+				<input id="tele" type="text" autocomplete="off"
+					placeholder="请输入您的手机号" name="tele" maxLength="11">
+				<p class="tip" id="tip-tele">请输入11位有效手机号</p>
+			</div>
+			<div class="form-item">
+				<select id="post" name="post">
+				</select>
+			</div>
+		</form>
+		<div class="form-item">
+				<button onClick="check()" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始测试</button>
+		</div>
+	</div>
+</body>
+</html>

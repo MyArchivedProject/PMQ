@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>后台登录</title>
+<link href="/PMQ/static/admin/css/login.css" rel="stylesheet"
+	type="text/css" />
+<script>
+//解决游览器对jQuery的兼容性问题 
+var ua = window.navigator.userAgent;
+if(ua.indexOf('MSIE 6') != -1 || ua.indexOf('MSIE 7') != -1 || ua.indexOf('MSIE 8') != -1){
+	window.location.href="/PMQ/compabilityError.html" 
+}else{
+	document.write("<script src='/PMQ/static/common/jquery-3.3.1.min.js'><\/script>"); 
+};
+</script>
+<script src="/PMQ/static/admin/js/login.js?"></script>
+</head>
+<body>
+	<div class="dowebok">
+		<div class="logo"></div>
+		<div class="form-item">
+			<input id="user" type="text" autocomplete="off" placeholder="用户" maxlength="25">
+			<p class="tip" id="user-tip" >请输入有效的用户名</p>
+		</div>
+		<div class="form-item">
+			<input id="pass" type="password" autocomplete="off"
+				placeholder="登录密码" maxlength="25">
+			<p class="tip" id="pass-tip">用户名或密码不正确</p>
+		</div>
+		<div class="form-item">
+			<input id="code" type="text" autocomplete="off" placeholder="4位数验证码"
+				onKeyUp="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'')" maxlength="10"> <img
+				id="login-code" alt="点击更换"  src="">
+			<p class="tip" id="code-tip">请输入正确的验证码</p>
+		</div>
+		<div class="form-item">
+			<button onClick="login()" id="loginID">登 录</button>
+		</div>
+		<!-- <div class="reg-bar">
+			<a class="forget" href="javascript:">忘记密码</a>
+		</div> -->
+	</div>
+</body>
+</html>

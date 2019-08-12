@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	h4:hover{
+		color:red;
+	}
+</style>
+<script src="/PMQ/static/common/jquery-3.3.1.min.js"></script>
+<script>
+//保存导入题目产生的错误信息 
+var parent=window.opener;
+$(function(){
+	var errors=parent.errors
+/* 	$.each(errors,function(index){
+		var row=$("<h4></h4>")
+		row.append((index+1)+". "+errors[index])
+		$("#content").append(row)
+	}) */
+	var row=$("<h4></h4>")
+	row.append("--"+"-- "+errors[errors.length-1])
+	$("#content").append(row)
+	for(var i=0;i<(errors.length-1);i++){
+		/* if(i%2!=0){
+			row=$("<h4 style='color:red'></h4>")
+		}else{
+			row=$("<h4 ></h4>")
+		}	 */
+		row=$("<h4 ></h4>")
+		row.append((i+1)+". "+errors[i])
+		$("#content").append(row)
+	}
+})
+</script>
+</head>
+<body>
+<div><h1>错误信息</h1></div>
+<div id="content">
+</div>
+</body>
+</html>

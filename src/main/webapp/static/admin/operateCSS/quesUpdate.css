@@ -1,0 +1,64 @@
+
+@charset "UTF-8";
+
+.updateQues-dowebok {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 650px;
+	height: 600px;
+	margin: -300px 0 0 -215px;
+	border: 3px solid #f0f0f0;
+	overflow: hidden;
+	background-color: white;
+	z-index: 999;
+	overflow-y:auto;
+}
+
+h3 {
+	padding: 10px 0 10px;
+	background-color: #f0f0f0;
+}
+
+
+.updateQues-ques, .updateQues-else,
+	.updateQues-button {
+	text-align: center;
+	padding-bottom: 16px;
+}
+
+.updateQues-score {
+	float: right;
+}
+
+.updateQues-option {
+	padding: 10px 10px 17px 10px;
+}
+
+.updateQues-button button {
+	margin-top: 10px;
+	width: 80px;
+	height: 30px;
+	font-size: 15px;
+	border-radius: 20px;
+	border: 1px solid #000
+}
+
+#updateQues-submit {
+	background-color: #87cefa;
+}
+
+/* .tip {
+	display: none;
+	position: absolute;
+	left: 420px;
+	top: 68px;
+	font-size: 14px;
+	color: #f50;
+} */
+#tip-updateQues{
+	color: red;
+	font-size:10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}

@@ -1,0 +1,67 @@
+@charset "UTF-8";
+/** { margin: 0; padding: 0; }*/
+.addEva-dowebok {
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	width: 650px;
+	height: auto;
+	margin: -270px 0 0 -215px;
+	border: 3px solid #f0f0f0;
+	background-color: white;
+	z-index: 999;
+}
+
+h3 {
+	padding: 10px 0 10px;
+	margin-bottom:0px;
+	background-color: #f0f0f0;
+}
+
+.addEva-score {
+	float: right;
+}
+
+.addEva-option {
+	padding: 10px 10px 17px 10px;
+}
+
+
+.ul-tr{
+	padding: 0px 0px;
+}
+.li-td {
+	padding: 0px 10px;
+	display: inline-block;
+	list-style: none;
+}
+
+.addEva-button {
+	text-align: center;
+}
+
+.addEva-button button {
+	margin-bottom:15px;
+	width: 80px;
+	height: 30px;
+	font-size: 15px;
+	border-radius: 20px;
+	border: 1px solid #000;
+	outline: none;
+}
+
+#addEva-submit {
+	background-color: #87cefa;
+}
+/* 我后来加入的 */
+#form-add {
+	 margin-bottom: 0em;
+}
+#form-add select{
+	margin-right: 20px;
+}
+#myTip{
+	color: red;
+	font-size: 10px;
+	margin-top: 5px;
+}

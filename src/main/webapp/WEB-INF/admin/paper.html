@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- 测试者管理/试卷管理 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/css/paper.css" />
+<script src="/PMQ/static/admin/js/paper.js"></script>
+</head>
+<body>
+	<div id="paper">
+		<div id="paper-manage">
+			<div>
+				<div class="opt-div-but-common">
+				<form id="select-form">
+				<span>姓名:</span><input type="text"  class="opt-condic-common" name="name"> 
+					<span>职位:</span><input type="text"  class="opt-condic-common" name="post"> 
+					<span>手机号:</span><input type="text"  class="opt-condic-common" name="tele"><br><br>
+					<span>批改老师:</span><input type="text"  class="opt-condic-common" name="teacher">
+					<span>总分最低分:</span><input type="text"  class="opt-condic-common" name="total">
+				</form>				
+				</div >
+				<div class="opt-div-but-common">
+					<button class="opt-but-common" onClick="searchBy()">查询</button>
+					<button class="opt-but-common" onClick="clearInput()">清空</button>
+				</div>
+				<hr class="opt-hr-common">
+			</div>
+			<table cellspacing="0">
+				<thead align="left">
+					<tr>
+						<th>序号</th>
+						<th>姓名</th>
+						<th>测试时间</th>
+						<th>邮箱</th>
+						<th>手机号</th>
+						<!-- <th>试卷满分</th> -->
+						<th>职位</th>
+						<th>选择题得分</th>
+						<th>主观题得分</th>
+						 <th>总分</th> 
+						<th>批改者</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<div id="tfoot">
+				<button onClick="jumpStart()">第一页</button>
+				<button onClick="jumpPre()">上一页</button>
+				<button onClick="jumpNext()">下一页</button>
+				<button onClick="jumpEnd()">最后一页</button>
+				第<span id="spanCurrentPage"></span>页/共<span id="spanTotalPage"></span>页
+			</div>
+		</div>
+	</div>
+</body>
+</html>

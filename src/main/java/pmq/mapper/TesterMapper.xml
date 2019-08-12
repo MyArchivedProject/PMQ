@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmq.dao.TesterMapper" >
+  <resultMap id="BaseResultMap" type="pmq.pojo.Tester">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="tele" jdbcType="CHAR" property="tele" />
+    <result column="post" jdbcType="VARCHAR" property="post" />
+    <result column="num_obj" jdbcType="INTEGER" property="numObj" />
+    <result column="num_sub" jdbcType="INTEGER" property="numSub" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="teacher" jdbcType="VARCHAR" property="teacher" />
+    <result column="total_obj" jdbcType="INTEGER" property="totalObj" />
+    <result column="total_sub" jdbcType="INTEGER" property="totalSub" />
+    <result column="total" jdbcType="INTEGER" property="total" />
+    <result column="know_score" jdbcType="INTEGER" property="knowScore" />
+    <result column="experience_score" jdbcType="INTEGER" property="experienceScore" />
+    <result column="skill_score" jdbcType="INTEGER" property="skillScore" />
+    <result column="style_score" jdbcType="INTEGER" property="styleScore" />
+    <result column="total_paper" jdbcType="INTEGER" property="totalPaper" />
+    <result column="value_score" jdbcType="INTEGER" property="valueScore" />
+    <result column="sub_paper" jdbcType="INTEGER" property="subPaper" />
+    <result column="obj_paper" jdbcType="INTEGER" property="objPaper" />
+    <result column="know_paper" jdbcType="INTEGER" property="knowPaper" />
+    <result column="experience_paper" jdbcType="INTEGER" property="experiencePaper" />
+    <result column="skill_paper" jdbcType="INTEGER" property="skillPaper" />
+    <result column="style_paper" jdbcType="INTEGER" property="stylePaper" />
+    <result column="value_paper" jdbcType="INTEGER" property="valuePaper" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tester
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pmq.pojo.Tester" useGeneratedKeys="true"  keyProperty="id">
+    insert into tester ( name, email, 
+      tele, post, num_obj, num_sub,
+      total_paper
+     )
+    values ( #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{tele,jdbcType=CHAR}, #{post,jdbcType=VARCHAR}, #{numObj,jdbcType=INTEGER}, #{numSub,jdbcType=INTEGER},
+      #{totalPaper,jdbcType=INTEGER}
+     )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="pmq.pojo.Tester" >
+    update tester
+    set name = #{name,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      tele = #{tele,jdbcType=CHAR},
+      post = #{post,jdbcType=VARCHAR},
+      num_obj = #{numObj,jdbcType=INTEGER},
+      num_sub = #{numSub,jdbcType=INTEGER},
+      total_obj = #{totalObj,jdbcType=INTEGER},
+      total_sub = #{totalSub,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER},
+      teacher = #{teacher,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, name, email, tele, post, num_obj, num_sub, time, teacher, total_obj, total_sub, 
+    total, know_score, experience_score, skill_score, style_score, total_paper, value_score, 
+    sub_paper, obj_paper, know_paper, experience_paper, skill_paper, style_paper, value_paper
+    from tester
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, email, tele, post, num_obj, num_sub, time, teacher, total_obj, total_sub, 
+    total, know_score, experience_score, skill_score, style_score, total_paper, value_score, 
+    sub_paper, obj_paper, know_paper, experience_paper, skill_paper, style_paper, value_paper
+    from tester
+  </select>
+  
+  <select id="selectAllBy" resultMap="BaseResultMap" >
+    select id, name, email, tele, post, num_obj, num_sub, total_obj, total_sub, total,
+    teacher,time,total_paper
+    from tester
+    where name like "%"#{name,jdbcType=VARCHAR}"%" and
+      email like "%"#{email,jdbcType=VARCHAR}"%" and
+      tele like "%"#{tele,jdbcType=CHAR}"%" and
+      post like "%"#{post,jdbcType=VARCHAR}"%" and
+      teacher like "%"#{teacher,jdbcType=VARCHAR}"%" and
+      total_obj >= #{totalObj,jdbcType=INTEGER} and
+      total_sub >= #{totalSub,jdbcType=INTEGER} and
+      total >= #{total,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateObjScore" parameterType="pmq.pojo.Tester" >
+    update tester set
+      num_obj = #{numObj,jdbcType=INTEGER},
+      teacher = #{teacher,jdbcType=VARCHAR},
+      total_obj = #{totalObj,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER},
+      know_score = #{knowScore,jdbcType=INTEGER},
+      experience_score = #{experienceScore,jdbcType=INTEGER},
+      skill_score = #{skillScore,jdbcType=INTEGER},
+      style_score = #{styleScore,jdbcType=INTEGER},
+      total_paper = #{totalPaper,jdbcType=INTEGER},
+      value_score = #{valueScore,jdbcType=INTEGER},
+      obj_paper = #{objPaper,jdbcType=INTEGER},
+      know_paper = #{knowPaper,jdbcType=INTEGER},
+      experience_paper = #{experiencePaper,jdbcType=INTEGER},
+      skill_paper = #{skillPaper,jdbcType=INTEGER},
+      style_paper = #{stylePaper,jdbcType=INTEGER},
+      value_paper = #{valuePaper,jdbcType=INTEGER}
+ 	  where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateSubScore" parameterType="pmq.pojo.Tester" >
+    update tester set
+      total_sub = #{totalSub,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER},
+      teacher = #{teacher,jdbcType=	VARCHAR},
+      
+      know_score = know_score+ #{knowScore,jdbcType=INTEGER},
+      experience_score =experience_score+ #{experienceScore,jdbcType=INTEGER},
+      skill_score = skill_score+#{skillScore,jdbcType=INTEGER},
+      style_score =style_score+ #{styleScore,jdbcType=INTEGER},
+      value_score =value_score+ #{valueScore,jdbcType=INTEGER},
+      
+      total_paper =total_paper + #{subPaper,jdbcType=INTEGER},
+      sub_paper = #{subPaper,jdbcType=INTEGER},
+      know_paper = know_paper+#{knowPaper,jdbcType=INTEGER},
+      experience_paper =experience_paper+ #{experiencePaper,jdbcType=INTEGER},
+      skill_paper = skill_paper+#{skillPaper,jdbcType=INTEGER},
+      style_paper =style_paper+ #{stylePaper,jdbcType=INTEGER},
+      value_paper = value_paper+#{valuePaper,jdbcType=INTEGER}
+ 	  where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectObjScoreById" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select  total_obj
+    from tester
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllMarked" resultMap="BaseResultMap">
+    select id, name, email, tele, post, num_obj, num_sub, time, teacher, total_obj, total_sub, 
+    total, know_score, experience_score, skill_score, style_score, total_paper, value_score, 
+    sub_paper, obj_paper, know_paper, experience_paper, skill_paper, style_paper, value_paper
+    from tester
+    where  teacher != "" and  post = (select post from tester where id= #{id,jdbcType=INTEGER})
+  </select>
+</mapper>

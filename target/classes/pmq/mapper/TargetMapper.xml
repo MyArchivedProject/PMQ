@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmq.dao.TargetMapper" >
+  <resultMap id="BaseResultMap" type="pmq.pojo.Target" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="index_f" property="indexF" jdbcType="VARCHAR" />
+    <result column="index_s" property="indexS" jdbcType="VARCHAR" />
+    <result column="num_obj" property="numObj" jdbcType="INTEGER" />
+    <result column="num_sub" property="numSub" jdbcType="INTEGER" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+    <result column="allnum_obj" property="allnumObj" jdbcType="INTEGER" />
+    <result column="allnum_sub" property="allnumSub" jdbcType="INTEGER" />
+  </resultMap>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from target
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pmq.pojo.Target" >
+    insert into target ( post, index_f, 
+      index_s, num_obj, num_sub, 
+      total)
+    values ( #{post,jdbcType=VARCHAR}, #{indexF,jdbcType=VARCHAR}, 
+      #{indexS,jdbcType=VARCHAR}, 0, 0, 
+     0)
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="pmq.pojo.Target" >
+    update target
+    set post = #{post,jdbcType=VARCHAR},
+      index_f = #{indexF,jdbcType=VARCHAR},
+      index_s = #{indexS,jdbcType=VARCHAR},
+      num_obj = #{numObj,jdbcType=INTEGER},
+      num_sub = #{numSub,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, post, index_f, index_s, num_obj, num_sub, total
+    from target
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, post, index_f, index_s, num_obj, num_sub
+    from target
+  </select>
+  <!-- 通过职位和二级指标查询 id -->
+  <select id="selectByPIS"  resultType="int">
+  	select IFNULL(MIN(id),0) 
+    from target
+    where post=#{post} and index_s=#{index_s} 
+  </select>
+  
+  <select id="selectByP"  resultType="int" parameterType="String">
+  	select count(*) 
+    from target
+    where post=#{post}
+  </select>
+  
+  <update id="updateNum" >
+    update target
+    set num_obj = #{numObj,jdbcType=INTEGER},
+      	num_sub = #{numSub,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <delete id="deletePost" parameterType="String" >
+    delete from target
+    where post = #{post}
+  </delete>
+  
+  <select id="selectBYPII"  resultType="Integer">
+  	select id
+    from target
+    where post like "%"#{post}"%" and index_f like "%"#{index_f}"%" 
+    and index_s like "%"#{index_s}"%" 
+  </select>
+  
+  <select id="selectBYF"  resultType="Integer">
+  	select id
+    from target
+    where index_f = #{index_f}
+  </select>
+  
+  <select id="selectAllByP"  resultType="Integer">
+  	select id
+    from target
+    where post = #{post}
+  </select>
+  
+  <select id="selectByPost" resultMap="BaseResultMap" parameterType="String" >
+    select id, post, index_f, index_s, num_obj, num_sub, total,post
+    from target
+    where post = #{post,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectSById" resultType="String" parameterType="java.lang.Integer" >
+    select  index_s
+    from target
+    where id =  #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectObjNumById" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select  num_obj
+    from target
+    where id =  #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectSubNumById" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select  num_sub
+    from target
+    where id =  #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAllPost" resultType="java.lang.String">
+    select  distinct post
+    from target
+  </select>
+  <select id="selectIndexSNumByPost" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select  count(*)
+    from target
+    where post = #{post}
+  </select>
+  
+   <select id="selectIndexSByPost" resultType="String" parameterType="String" >
+    select  index_s
+    from target
+    where post = #{post,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllPostBy" resultType="java.lang.String" parameterType="Target">
+    select  distinct post
+    from target
+    where post like "%"#{post,jdbcType=VARCHAR}"%"
+  </select>
+  <select id="selectAllBy" resultMap="BaseResultMap" parameterType="Target">
+    select  id, post, index_f, index_s, num_obj, num_sub, allnum_obj, allnum_sub
+    from target
+    where post like "%"#{post,jdbcType=VARCHAR}"%" and
+     index_f like "%"#{indexF,jdbcType=VARCHAR}"%" and 
+      index_s like "%"#{indexS,jdbcType=VARCHAR}"%"
+  </select>
+  <select id="selectAllId"  resultType="Integer">
+  	select id
+    from target
+  </select>
+  
+   <!--已经被下面那段sql语句代替  <update id="updateAllNumSubObjA" parameterType="pmq.pojo.Target" >
+    update target
+    <foreach collection="list" index="index" item="item" open=""
+			close="" separator=",">
+			 set
+      			 allnum_obj = (select count(*) from question where index_id=231 and objsub=0),
+      			 allnum_sub = (select count(*) from question where index_id=231 and objsub=1)
+      		 where id = #{231,jdbcType=INTEGER}
+	</foreach>
+  </update> -->
+  <update id="updateAllNumSubObj" parameterType="pmq.pojo.Target" >
+    update target set
+    <!-- <trim prefix="set" prefixOverrides=""> -->
+   		 <foreach collection="list" index="index" item="item" open="allnum_obj = case id"
+			close="" separator="">
+			when  #{item.id,jdbcType=INTEGER}
+      		then  (select count(*) from question where index_id=#{item.id} and objsub=0)
+		</foreach>
+		end,
+		<foreach collection="list" index="index" item="item" open="allnum_sub = case id"
+			close="" separator="">
+			when  #{item.id,jdbcType=INTEGER}
+      		then  (select count(*) from question where index_id=#{item.id} and objsub=1)
+		</foreach>
+		end
+    <!-- </trim> -->
+  </update>
+   <select id="selectAllNumObjSub" parameterType="java.lang.String" resultType="pmq.pojo.Post">	
+   		   	select distinct post,count(*) as indexSNum,
+   		   	sum(allnum_sub) as objNum,sum(allnum_obj) as subNum
+   		   	 from target 
+   		   	 where post like "%"#{post}"%"
+   		   	 group by post
+  </select>
+</mapper>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<title>Information</title>
+<link href="/PMQ/static/front/css/test.css" rel="stylesheet"
+	type="text/css" />
+<script src="/PMQ/static/front/js/test.js"></script>
+</head>
+<body >
+	<!-- 客观题界面 -->
+	<div class="dowebok" id="objQuesDiv">
+		<div>
+			<h2 style="text-align: center; padding-top: 50px;" class="modeQues"></h2>
+		</div>
+		<div>
+			<p style="padding-left: 10%; padding-top: 40px;" id="objQues"></p>
+		</div>
+		<div style="padding-left: 20%; padding-top: 20px; line-height:22px">
+			<div id="objQptionDiv"></div>
+		</div>
+		<div class="next-pre">
+			<button onClick="preQues()">返回</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button onClick="nextQues()">下一题</button>
+		</div>
+	</div>
+	<!-- 主观题界面 -->
+	<div class="dowebok" id="subQuesDiv" hidden="hidden">
+		<div>
+			<h2 style="text-align: center; padding-top: 50px;" class="modeQues"></h2>
+		</div>
+		<div>
+			<p style="padding-left: 10%; padding-top: 40px;" id="subQues"></p>
+		</div>
+		<div style="padding-left: 10%; padding-top: 25px;">
+			<textarea rows="12" cols="80" id="subAnswer" placeholder="请认真回答主观题，这将会影响您的最终得分"></textarea>
+		</div>
+		<div class="next-pre">
+			<button onClick="preQues()">返回</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button onClick="nextQues()">下一题</button>
+		</div>
+	</div>
+	<!-- 测试完成界面 -->
+	<div class="dowebok" id="finishQuesDiv" hidden="hidden">
+		<div class="button">
+			<button onClick="unFinish();preMode()">返回</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button onClick="submitPaper()">提交试卷</button>
+		</div>
+	</div>
+</body>
+</html>

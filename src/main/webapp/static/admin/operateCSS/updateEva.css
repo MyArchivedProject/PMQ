@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/** { margin: 0; padding: 0; }*/
+.updateEva-dowebok {
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	width: 650px;
+	height: auto;
+	margin: -270px 0 0 -215px;
+	border: 3px solid #f0f0f0;
+	background-color: white;
+	z-index: 999;
+}
+
+h3 {
+	padding: 10px 0 10px;
+	background-color: #f0f0f0;
+}
+
+.updateEva-score {
+	float: right;
+}
+
+.updateEva-option {
+	padding: 10px 10px 17px 10px;
+}
+
+.ul-tr{
+	padding: 0px 0px;
+}
+.li-td {
+	padding: 0px 10px;
+	display: inline-block;
+	list-style: none;
+}
+
+.updateEva-button {
+	text-align: center;
+}
+
+.updateEva-button button {
+	margin-bottom:15px;
+	width: 80px;
+	height: 30px;
+	font-size: 15px;
+	border-radius: 20px;
+	border: 1px solid #000
+}
+
+#updateEva-submit {
+	background-color: #87cefa;
+}
+#myTip{
+	color: red;
+	font-size: 10px;
+	margin-top: 5px;
+}
+#form-update {
+	 margin-bottom: 0em;
+}
+#update-title{
+	margin-right: 20px;
+}

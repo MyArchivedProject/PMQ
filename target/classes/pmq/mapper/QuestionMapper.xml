@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmq.dao.QuestionMapper">
+	<resultMap id="BaseResultMap" type="pmq.pojo.Question">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="question" property="question" jdbcType="VARCHAR" />
+		<result column="index_id" property="indexId" jdbcType="INTEGER" />
+		<result column="des" property="des" jdbcType="VARCHAR" />
+		<result column="option_a" property="optionA" jdbcType="VARCHAR" />
+		<result column="score_a" property="scoreA" jdbcType="INTEGER" />
+		<result column="option_b" property="optionB" jdbcType="VARCHAR" />
+		<result column="score_b" property="scoreB" jdbcType="INTEGER" />
+		<result column="option_c" property="optionC" jdbcType="VARCHAR" />
+		<result column="score_c" property="scoreC" jdbcType="INTEGER" />
+		<result column="option_d" property="optionD" jdbcType="VARCHAR" />
+		<result column="score_d" property="scoreD" jdbcType="INTEGER" />
+		<result column="option_e" property="optionE" jdbcType="VARCHAR" />
+		<result column="score_e" property="scoreE" jdbcType="INTEGER" />
+		<result column="option_f" property="optionF" jdbcType="VARCHAR" />
+		<result column="score_f" property="scoreF" jdbcType="INTEGER" />
+		<result column="top" property="top" jdbcType="INTEGER" />
+		<result column="objsub" property="objsub" jdbcType="INTEGER" />
+		<result column="flag" property="flag" jdbcType="INTEGER" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="post" property="post" jdbcType="VARCHAR" />
+		<result column="index_f" property="indexF" jdbcType="VARCHAR" />
+		<result column="index_s" property="indexS" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- <resultMap id="count" type="pmq.pojo.Question">
+        <result column="sum(id)" property="sum" jdbcType="VARCHAR"/>
+        <result column="count(*)" property="count" jdbcType="VARCHAR"/>
+    </resultMap> -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		question
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<!-- 在数据库里默认flag（备用字段）为0，我在这里去掉flag这个字段 -->
+	<insert id="insert" parameterType="pmq.pojo.Question">
+		insert into question
+		(code,question, index_id,
+		des, option_a, score_a,
+		option_b, score_b,
+		option_c,
+		score_c, option_d, score_d,
+		option_e, score_e, option_f,
+		score_f, top, objsub
+		)
+		values (
+		#{code,jdbcType=VARCHAR},#{question,jdbcType=VARCHAR},
+		#{indexId,jdbcType=INTEGER},
+		#{des,jdbcType=VARCHAR},
+		#{optionA,jdbcType=VARCHAR},
+		#{scoreA,jdbcType=INTEGER},
+		#{optionB,jdbcType=VARCHAR}, #{scoreB,jdbcType=INTEGER},
+		#{optionC,jdbcType=VARCHAR},
+		#{scoreC,jdbcType=INTEGER},
+		#{optionD,jdbcType=VARCHAR},
+		#{scoreD,jdbcType=INTEGER},
+		#{optionE,jdbcType=VARCHAR}, #{scoreE,jdbcType=INTEGER},
+		#{optionF,jdbcType=VARCHAR},
+		#{scoreF,jdbcType=INTEGER},
+		#{top,jdbcType=INTEGER},
+		#{objsub,jdbcType=INTEGER}
+		)
+	</insert>
+	<!-- 在数据库里默认flag（备用字段）为0，我在这里去掉flag这个字段 -->
+	<insert id="insertAll" parameterType="pmq.pojo.Question">
+		insert into question
+		(code ,question, index_id,
+		des, option_a, score_a,
+		option_b, score_b,
+		option_c,
+		score_c, option_d, score_d,
+		option_e, score_e, option_f,
+		score_f, top, objsub
+		) 
+		values
+		<foreach collection="list" item="q" separator=",">
+		(
+		#{q.code,jdbcType=VARCHAR},#{q.question,jdbcType=VARCHAR},
+		#{q.indexId,jdbcType=INTEGER},
+		#{q.des,jdbcType=VARCHAR},
+		#{q.optionA,jdbcType=VARCHAR},
+		#{q.scoreA,jdbcType=INTEGER},
+		#{q.optionB,jdbcType=VARCHAR}, #{q.scoreB,jdbcType=INTEGER},
+		#{q.optionC,jdbcType=VARCHAR},
+		#{q.scoreC,jdbcType=INTEGER},
+		#{q.optionD,jdbcType=VARCHAR},
+		#{q.scoreD,jdbcType=INTEGER},
+		#{q.optionE,jdbcType=VARCHAR}, #{q.scoreE,jdbcType=INTEGER},
+		#{q.optionF,jdbcType=VARCHAR},
+		#{q.scoreF,jdbcType=INTEGER},
+		#{q.top,jdbcType=INTEGER},
+		#{q.objsub,jdbcType=INTEGER}
+		)
+		</foreach>
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="pmq.pojo.Question">
+		update question
+		set question = #{question,jdbcType=VARCHAR},
+		des =
+		#{des,jdbcType=VARCHAR},
+		option_a = #{optionA,jdbcType=VARCHAR},
+		score_a = #{scoreA,jdbcType=INTEGER},
+		option_b =
+		#{optionB,jdbcType=VARCHAR},
+		score_b = #{scoreB,jdbcType=INTEGER},
+		option_c = #{optionC,jdbcType=VARCHAR},
+		score_c =
+		#{scoreC,jdbcType=INTEGER},
+		option_d = #{optionD,jdbcType=VARCHAR},
+		score_d = #{scoreD,jdbcType=INTEGER},
+		option_e =
+		#{optionE,jdbcType=VARCHAR},
+		score_e = #{scoreE,jdbcType=INTEGER},
+		option_f = #{optionF,jdbcType=VARCHAR},
+		score_f =
+		#{scoreF,jdbcType=INTEGER},
+		top = #{top,jdbcType=INTEGER},
+		objsub =
+		#{objsub,jdbcType=INTEGER},
+		flag = #{flag,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, question, index_id, des, option_a, score_a,
+		option_b, score_b,
+		option_c,
+		score_c, option_d, score_d, option_e,
+		score_e, option_f, score_f, top, objsub,
+		flag
+		from question
+		where id =
+		#{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, question, index_id,
+		des, option_a, score_a, option_b, score_b,
+		option_c,
+		score_c, option_d,
+		score_d, option_e, score_e, option_f, score_f, top, objsub,
+		flag
+		from
+		question
+	</select>
+
+
+	<select id="selectAllInnerJoinTarget" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select question.id, question, index_id, des, option_a, score_a,
+		option_b,
+		score_b, option_c,
+		score_c, option_d, score_d, option_e,
+		score_e, option_f, score_f, top, objsub,
+		flag,
+		post, index_f ,index_s
+		from question inner join target
+		on index_id=target.id
+	</select>
+	<!-- //通过二级指标进行题库查询//联合question和target使用内关联查询//改进版 -->
+	<select id="selectAllByIndexPlus" parameterType="int" resultMap="BaseResultMap">
+		select question.id, question, index_id, des, option_a, score_a,
+		option_b,
+		score_b, option_c,
+		score_c, option_d, score_d, option_e,
+		score_e, option_f, score_f, top, objsub,
+		flag,
+		post, index_f ,index_s
+		from question inner join target
+		on index_id=target.id
+		where index_id in
+		<foreach collection="list" index="index" item="item" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+	<select id="selectAllByIndexAPlus" parameterType="int" resultMap="BaseResultMap">
+		select question.id, question, index_id, des, option_a, score_a,
+		option_b,
+		score_b, option_c,
+		score_c, option_d, score_d, option_e,
+		score_e, option_f, score_f, top, objsub,
+		flag,
+		post, index_f ,index_s
+		from question inner join target
+		on index_id=target.id
+		where flag=#{flag} 
+		and index_id in
+		<foreach collection="list" index="index" item="item" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+	<select id="selectAllByIndexBPlus" parameterType="int" resultMap="BaseResultMap">
+		select question.id, question, index_id, des, option_a, score_a,
+		option_b,
+		score_b, option_c,
+		score_c, option_d, score_d, option_e,
+		score_e, option_f, score_f, top, objsub,
+		flag,
+		post, index_f ,index_s
+		from question inner join target
+		on index_id=target.id
+		where objsub=#{objsub} 
+		and index_id in
+		<foreach collection="list" index="index" item="item" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+	<select id="selectAllByIndexCPlus" parameterType="int" resultMap="BaseResultMap">
+		select question.id, question, index_id, des, option_a, score_a,
+		option_b,
+		score_b, option_c,
+		score_c, option_d, score_d, option_e,
+		score_e, option_f, score_f, top, objsub,
+		flag,
+		post, index_f ,index_s
+		from question inner join target
+		on index_id=target.id
+		where flag=#{flag} and objsub=#{objsub} 
+		and index_id in
+		<foreach collection="list" index="index" item="item" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+	<!-- 通过二级指标进行题库查询//联合question和target使用内关联查询  废弃->超优化-->
+	<select id="selectAllByIndex" parameterType="pmq.pojo.Target" resultMap="BaseResultMap">
+		select question.id, question, index_id, des, option_a, score_a,
+		option_b,
+		score_b, option_c,
+		score_c, option_d, score_d, option_e,
+		score_e, option_f, score_f, top, objsub,
+		flag,
+		post, index_f ,index_s
+		from question inner join target
+		on index_id=target.id
+		where index_id 
+		in (select id
+   			 from target
+   			 where post like "%"#{post}"%" and index_f like "%"#{indexF}"%" 
+  			  and index_s like "%"#{indexS}"%")
+	</select>
+	<!-- 通过二级指标进行题库查询//联合question和target使用内关联查询 flag不确定  废弃->超优化-->
+	<select id="selectAllByIndexA"  resultMap="BaseResultMap">
+		select question.id, question, index_id, des, option_a, score_a,
+		option_b,
+		score_b, option_c,
+		score_c, option_d, score_d, option_e,
+		score_e, option_f, score_f, top, objsub,
+		flag,
+		post, index_f ,index_s
+		from question inner join target
+		on index_id=target.id
+		where  flag = #{flag} and index_id in
+		<choose>
+			<when test="target.post=='' and target.indexF=='' and target.indexS==''">
+			 (select id
+   			 from target)
+			</when>
+			<otherwise>
+			(select id
+   			 from target
+   			 where post like "%"#{target.post}"%" and index_f like "%"#{target.indexF}"%" 
+  			 and index_s like "%"#{target.indexS}"%")
+			</otherwise>
+		</choose>
+	</select>
+	<!-- 通过二级指标进行题库查询//联合question和target使用内关联查询 objsub不确定  废弃->超优化-->
+	<select id="selectAllByIndexB"  resultMap="BaseResultMap">
+		select question.id, question, index_id, des, option_a, score_a,
+		option_b,
+		score_b, option_c,
+		score_c, option_d, score_d, option_e,
+		score_e, option_f, score_f, top, objsub,
+		flag,
+		post, index_f ,index_s
+		from question inner join target
+		on index_id=target.id
+		where  objsub=#{objsub}
+		and index_id in 
+  		<choose>
+			<when test="target.post=='' and target.indexF=='' and target.indexS==''">
+			 (select id
+   			 from target)
+			</when>
+			<otherwise>
+			(select id
+   			 from target
+   			 where post like "%"#{target.post}"%" and index_f like "%"#{target.indexF}"%" 
+  			 and index_s like "%"#{target.indexS}"%")
+			</otherwise>
+		</choose>
+	</select>
+	<!-- 通过二级指标进行题库查询//联合question和target使用内关联查询objsub和flag都不确定  废弃->超优化-->
+	<select id="selectAllByIndexC"  resultMap="BaseResultMap">
+		select question.id, question, index_id, des, option_a, score_a,
+		option_b,
+		score_b, option_c,
+		score_c, option_d, score_d, option_e,
+		score_e, option_f, score_f, top, objsub,
+		flag,
+		post, index_f ,index_s
+		from question inner join target
+		on index_id=target.id
+		where  objsub=#{objsub} and flag=#{flag}
+		and index_id in
+		<choose>
+			<when test="target.post=='' and target.indexF=='' and target.indexS==''">
+			 (select id
+   			 from target)
+			</when>
+			<otherwise>
+			(select id
+   			 from target
+   			 where post like "%"#{target.post}"%" and index_f like "%"#{target.indexF}"%" 
+  			 and index_s like "%"#{target.indexS}"%")
+			</otherwise>
+		</choose>
+		<!-- in (select id
+   			 from target
+   			 where post like "%"#{target.post}"%" and index_f like "%"#{target.indexF}"%" 
+  			  and index_s like "%"#{target.indexS}"%") -->
+	</select>
+
+	<select id="selectObjByIndex" resultMap="BaseResultMap">
+		select
+		id, question,
+		index_id, des,
+		option_a, score_a, option_b, score_b,option_c,score_c,
+		option_d, score_d, option_e, score_e, option_f, score_f,
+		top, objsub,flag
+		from
+		question
+		where index_id=#{indexId} and objsub=0 and flag=0
+		order by
+		rand() limit #{num}
+	</select>
+	<select id="selectSubByIndex" resultMap="BaseResultMap">
+		select
+		id, question,
+		index_id, des,
+		option_a, score_a, option_b, score_b,option_c,score_c,
+		option_d, score_d, option_e, score_e, option_f, score_f,
+		top, objsub,flag
+		from
+		question
+		where index_id=#{indexId} and objsub=1 and flag=0
+		order by
+		rand() limit #{num}
+	</select>
+	<select id="selectMust" resultMap="BaseResultMap">
+		select
+		id, question, index_id,
+		des,
+		option_a, score_a, option_b, score_b,option_c,score_c,
+		option_d, score_d, option_e, score_e, option_f, score_f,
+		top, objsub,flag
+		from
+		question
+		where flag=1
+	</select>
+	<select id="selectAllCode" resultType="String">
+		select
+		code
+		from question
+	</select>
+
+	<select id="selectObjNumByIndexId" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select count(*)
+		from question
+		where index_id = #{indexId,jdbcType=INTEGER} and objsub=0
+	</select>
+
+	<select id="selectSubNumByIndexId" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select count(*)
+		from question
+		where index_id = #{indexId,jdbcType=INTEGER} and objsub=1
+	</select>
+	
+	<select id="selectObjSum" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select count(*)
+		from question
+		where objsub =0
+		and index_id in (select id from target where post = #{post})
+	</select>
+	<select id="selectSubSum" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select count(*)
+		from question
+		where objsub =1
+		and index_id in (select id from target where post = #{post})
+	</select>
+</mapper>

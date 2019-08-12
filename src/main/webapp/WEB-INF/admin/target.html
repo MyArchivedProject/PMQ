@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/css/target.css" />
+<script src="/PMQ/static/admin/js/target.js"></script>
+</head>
+
+<body>
+	<div id="target">
+		<div id="target-manage">
+			<div>
+				<div class="opt-div-but-common">
+					<form id="search-form">
+						<span>职位:</span><input type="text" name="post"
+							class="opt-condic-common"> <span>一级指标:</span><input
+							type="text" name="indexF" class="opt-condic-common"> <span>二级指标:</span><input
+							type="text" name="indexS" class="opt-condic-common">
+					</form>
+
+				</div>
+				<div class="opt-div-but-common">
+					<button class="opt-but-common" onClick="searchBy()">查询</button>
+					<button class="opt-but-common" onClick="clearInput()">清空</button>
+				</div>
+				<hr class="opt-hr-common">
+			</div>
+			<button id="add-but" onClick="openAddIndex()">+增加二级指标</button>
+			<table cellspacing="0">
+				<thead align="left">
+					<tr>
+						<th>序号</th>
+						<th>职位</th>
+						<th>一级指标</th>
+						<th>二级指标</th>
+						<!-- <th>客观题总量</th>
+						<th>主观题总量</th> -->
+						<th>客观题数量</th>
+						<th>主观题数量</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<div id="tfoot">
+				<button onClick="jumpStart()">第一页</button>
+				<button onClick="jumpPre()">上一页</button>
+				<button onClick="jumpNext()">下一页</button>
+				<button onClick="jumpEnd()">最后一页</button>
+				第<span id="spanCurrentPage"></span>页/共<span id="spanTotalPage"></span>页
+			</div>
+		</div>
+	</div>
+</body>
+<div class="addIndex-dowebok" hidden="hidden">
+	<h3>增加自定义职位指标操作</h3>
+	<form id="form-add">
+		<div class="addIndex-item">
+			<span>职&nbsp;&nbsp;&nbsp;&nbsp;位 : </span> <select name="post" id="addIndex-post"></select>
+		</div>
+		<div class="addIndex-item">
+			<span>一级指标 : </span> <select name="indexF">
+				<option value='专业知识'>专业知识</option>
+				<option value='工作经验'>工作经验</option>
+				<option value='工作技能'>工作技能</option>
+				<option value='工作风格'>工作风格</option>
+				<option value='工作价值'>工作价值</option>
+			</select>
+		</div>
+		<div class="addIndex-item">
+			<span>二级指标 : </span><input type="text" name="indexS" id="add-indexS" maxlength="25"></input>
+		</div>
+	</form>
+	<div class="addIndex-button">
+		<button id="addIndex-submit" onClick="addIndex()">确定</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button onClick="quitAddIndex()">返回</button>
+	</div>
+</div>
+<div class="updateIndex-dowebok" hidden="hidden">
+	<h3>修改题目数量操作</h3>
+	<form id="form-update">
+		<input name="id" hidden="hidden" id="update-id">
+		<div class="updateIndex-item">
+			<span>职&nbsp;&nbsp;&nbsp;&nbsp;位 : </span> <input type="text" id="update-post" name="post"
+				readonly></input>
+		</div>
+		<div class="updateIndex-item">
+			<span>一级指标 : </span><input type="text" id="update-indexF"
+				name="indexF" readonly></input>
+		</div>
+		<div class="updateIndex-item">
+			<span>二级指标 : </span><input type="text" id="update-indexS"
+				name="indexS" readonly></input>
+		</div>
+		<div class="updateIndex-item">
+			<span>主观题数量 : </span><input type="number" id="update-numSub"
+				name="numSub"></input>题库数量为:<span id="dbSubNum"></span>
+		</div>
+		<div class="updateIndex-item">
+			<span>客观题数量 : </span><input type="number" id="update-numObj"
+				name="numObj"></input>题库数量为:<span id="dbObjNum"></span>
+		</div>
+	</form>
+	<div class="updateIndex-button">
+		<button id="updateIndex-submit" onClick="updateIndex()">确定</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button onClick='quitUpdateIndex()'>返回</button>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/operateCSS/addIndex.css" />
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/operateCSS/updateIndex.css" />
+</html>

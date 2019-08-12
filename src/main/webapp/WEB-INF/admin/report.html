@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>试卷详情</title>
+<style>
+	#report{
+	/* width:  592.28px*841.89px;  */
+	/* width:  1184.56px*1683px;  */
+	/* width:  1164.56px*1663px;  */
+	width:  1164.56px;
+	height:auto;
+	margin: auto auto;
+    padding: 10px 10px 10px 10px; 
+}
+.chart{
+	width: 1164.56px; 
+	height: 400px;
+}
+
+.details-dowebok {
+	width: 800px;
+	padding-right:384.56px;
+	height: auto;
+	border: 3px solid #f0f0f0;
+}
+
+.question, .answer {
+	padding-bottom: 20px;
+	line-height: 26px;
+}
+
+.answer {
+	width: 800px;
+	height: auto;
+	border: 1px solid #D3D3D3;
+}
+.question p{
+	margin: 0px 0px;
+	width: 800px;
+}
+.note{
+	margin-left: 110px;
+	margin-top: -20px;
+	margin-bottom: 50px;
+}
+</style>
+<script src="/PMQ/static/common/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/PMQ/static/common/echarts.min.js"></script>
+<script type="text/javascript" src="/PMQ/static/common/jspdf.min.js"></script>
+</head>
+<body>
+	<!-- <button onClick="downloadPDF()">下载</button> -->
+	<div id="report">
+		<div id="chartTotalNote" class="note pdf"></div>
+		<!-- <div id="chartIndexFNote" class="note pdf"></div> -->
+		<div id="chartTotal" class="chart pdf"></div>
+		<div id="chartPercent" class="chart pdf"></div>
+		<!-- <div id="chartPercentNote" class="note pdf"></div> -->
+		<div id="chartIndexF" class="chart pdf"></div>
+		<div class="details-dowebok">
+			<h2 class="pdf">测试详情：</h2>
+			<h3 class="pdf">客观题：</h3>
+			<div id="allObj"></div>
+			<h3 class="pdf">主观题：</h3>
+			<div id="allSub"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="/PMQ/static/admin/js/report.js"></script>
+</html>

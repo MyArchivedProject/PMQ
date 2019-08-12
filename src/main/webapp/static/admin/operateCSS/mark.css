@@ -1,0 +1,41 @@
+body{
+	width:80%;
+	margin-left: auto;
+	margin-right: auto;
+	/* background-color: #F5F5F5; */
+}
+/* 每道题目间的间距 */
+.quesDiv{
+	margin: 10px 0px;
+	background-color: #F5F5F5;
+}.quesDiv p{
+	margin: 0px 0px 10px 0px;;
+	padding: 0px 0px;
+	
+	/* margin-block-end:0px;
+	margin-block-start:0px;  */
+}
+/* 定义单选按钮的间距 */
+label {
+	margin-right: 25px;
+}
+#fixDiv{
+	position:fixed;
+	right: 10px;
+	top: 10px;	
+}
+button{
+	width:80px;
+	height: 30px;	
+	border: 0px;
+	outline:none;
+	color: white;
+	font-size: 20px;
+	
+}
+#buttonA{
+	background-color: red;	
+}
+#buttonB{
+	background-color: blue;	
+}

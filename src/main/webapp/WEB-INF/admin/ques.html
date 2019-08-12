@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/css/ques.css" />
+<script src="/PMQ/static/admin/js/ques.js"></script>
+</head>
+<body>
+<div id="ques-manage">
+	<div id="operate">
+		<div class="opt-div-con">
+			<label>职位:</label><input id="input-post" type="text"
+				class="opt-condic" /> <label>题型:</label> <select
+				id="select-objsub" class="opt-condic">
+				<option value="2">所有</option>
+				<option value="0">客观题</option>
+				<option value="1">主观题</option>
+			</select> <label>是否必考:</label> <select id="select-flag" class="opt-condic">
+				<option value="2">所有</option>
+				<option value="1">必考</option>
+				<option value="0">非必考</option>
+			</select>
+		<br/><br/>		
+			<label>一级指标:</label><input id="input-indexF" type="text"
+				class="opt-condic" /> <label>二级指标:</label><input id="input-indexS"
+				type="text" class="opt-condic" />
+		</div>
+		<hr style="border: 1px solid #F8F8FF;">
+		<div id="opt-div-but">
+			<button onClick="searchQues()" class="opt-but">查询题目</button>
+			<button onClick="clearInput()" class="opt-but">清空条件</button>
+			<button onClick="openQuesUpdateDialog()" class="opt-but">修改题目</button>
+			<button onClick="deleteQues()" class="opt-but">删除题目</button>
+			<button onClick="exportPattern()" class="opt-but">导出模版</button>
+			<button onClick="openImportQues()" class="opt-but">导入题目</button>
+			<!-- 			下载题库模版的连接 -->
+			<a id="exportPattern" href="/PMQ/static/admin/excels/evaluation.xls"></a>
+		</div>
+	</div>
+	<table border="1" cellspacing="0">
+		<thead>
+			<tr>
+				<th><button onClick="selectAll()">全选</button></th>
+				<th>序号</th>
+				<th>职位</th>
+				<th>一级指标</th>
+				<th>二级指标</th>
+				<th>题目</th>
+				<th>选项A</th>
+				<th>得分</th>
+				<th>选项B</th>
+				<th>得分</th>
+				<th>选项C</th>
+				<th>得分</th>
+				<th>选项D</th>
+				<th>得分</th>
+				<th>选项E</th>
+				<th>得分</th>
+
+				<th>题型</th>
+				<th>必考</th>
+			<tr>
+		</thead>
+
+		<tbody>
+		</tbody>
+	</table>
+	<div id="tfoot">
+		<button onClick="jumpStart()">第一页</button>
+		<button onClick="jumpPre()">上一页</button>
+		<button onClick="jumpNext()">下一页</button>
+		<button onClick="jumpEnd()">最后一页</button>
+		第<span id="spanCurrentPage"></span>页/共<span id="spanTotalPage"></span>页
+	</div>
+</div>
+</body>
+<!-- 导入题库，选择文件界面 -->
+<div id="import-dialog" hidden="true">
+	<div class="file">
+		<div class="file-logo">
+			<img src="../static/admin/images/file-logo.png" />
+		</div>
+		<div class="file-name">
+			<p>导入题库操作</p>
+		</div>
+		<a href="javascript:importFile();" class="file-choose"> 选择文件
+		<form id="uploadFile" method="post" action="ques/addQues" enctype="multipart/form-data">
+			<input type="file" id="file" accept=".xls" name="file">		
+		</form>
+		</a>	
+		<button id="file-cancel" onClick="quitImportQues()">取消</button>
+		<button id="file-submit" onClick="importQues()">提交</button>
+		<!-- <input type="button" id="file-cancel" value="取消" onClick="quitImportQues()">  
+		<input type="submit" id="file-submit" value="提交" onClick="importQues()">  -->
+	</div>
+</div>
+<!-- 更新题目操作界面 -->
+<div id="update-dialog" hidden="true">
+<!-- 修改题目界面 -->
+	<div class="updateQues-dowebok" >
+		<h3>题目更新</h3>
+		<p id="tip-updateQues">“题目内容”的最大字符数不能超过255个；“选项”的最大字符数不能超过100个；“得分”不能超过5位数</p>
+		<form id="form-update">	
+			<input id="id" name="id" hidden="true"></input>
+			<div class="updateQues-ques">
+				<span>题&nbsp;目 :</span><br>
+				<textarea rows="3" cols="80" id="question" name="question" maxLength="255"></textarea>
+			</div>
+			<div class="updateQues-option">
+				<span>选&nbsp;项&nbsp;A : </span>
+				<textarea rows="1" cols="40" id="optionA" name="optionA" maxLength="100"></textarea>
+				<div class="updateQues-score"><span>得&nbsp;分 : </span>
+				<input type="number" id="scoreA" name="scoreA" oninput="if(value.length>5)value=value.slice(0,5)"></div>
+			</div>
+			<div class="updateQues-option">
+				<span>选&nbsp;项&nbsp;B : </span>
+				<textarea rows="1" cols="40" id="optionB" name="optionB" maxLength="100"></textarea>
+				<div class="updateQues-score"><span>得&nbsp;分 : </span>
+				<input type="number" id="scoreB" name="scoreB" oninput="if(value.length>5)value=value.slice(0,5)"></div>
+			</div>
+			<div class="updateQues-option">
+				<span>选&nbsp;项&nbsp;C : </span>
+				<textarea rows="1" cols="40" id="optionC" name="optionC" maxLength="100"></textarea>
+				<div class="updateQues-score"><span>得&nbsp;分 : </span>
+				<input type="number" id="scoreC" name="scoreC" oninput="if(value.length>5)value=value.slice(0,5)"></div>
+			</div>
+			<div class="updateQues-option">
+				<span>选&nbsp;项&nbsp;D : </span>
+				<textarea rows="1" cols="40" id="optionD" name="optionD" maxLength="100"></textarea>
+				<div class="updateQues-score"><span>得&nbsp;分 : </span>
+				<input type="number" id="scoreD" name="scoreD" oninput="if(value.length>5)value=value.slice(0,5)"></div>
+			</div>
+			<div class="updateQues-option">
+				<span>选&nbsp;项&nbsp;E : </span>
+				<textarea rows="1" cols="40" id="optionE" name="optionE" maxLength="100"></textarea>
+				<div class="updateQues-score"><span>得&nbsp;分 : </span>
+				<input type="number" id="scoreE" name="scoreE" oninput="if(value.length>5)value=value.slice(0,5)"></div>
+			</div>
+			<div class="updateQues-option">
+				<span>选&nbsp;项&nbsp;F : </span>
+				<textarea rows="1" cols="40" id="optionF" name="optionF" maxLength="100"></textarea>
+				<div class="updateQues-score"><span>得&nbsp;分 : </span>
+				<input type="number" id="scoreF" name="scoreF" oninput="if(value.length>5)value=value.slice(0,5)"></div>
+			</div>
+			<div class="updateQues-else">
+				<span>题&nbsp;型 : </span>
+					<select id="objsub" name="objsub">
+						<option value="0">客观题</option>
+						<option value="1">主观题</option>
+					</select> 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span>是&nbsp;否&nbsp;必&nbsp;考 : </span>
+					<select id="flag" name="flag">
+						<option value="1">是</option>
+						<option value="0">否</option>
+					</select>
+			</div>
+
+		</form>
+		<div class="updateQues-button">
+			<button id="updateQues-submit" onClick="submit()">更新</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button onClick="updateCancel()">返回</button>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/operateCSS/quesUpdate.css" />
+<!-- css/导入文件的界面-->
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/operateCSS/quesImport.css" />
+</html>

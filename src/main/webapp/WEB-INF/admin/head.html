@@ -1,0 +1,95 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/css/head.css" />
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/css/common.css" />
+
+<script src="/PMQ/static/common/jquery-3.3.1.min.js"></script>
+<script src="/PMQ/static/admin/js/pagingDispay.js"></script>
+<script src="/PMQ/static/admin/js/head.js"></script>
+<script>
+	/* window.onload=function(){
+		 var head = document.getElementsByTagName('head')[0];
+		 var link = document.createElement('link');
+		 link.href = "/PMQ/static/admin/operateCSS/headUpdatePass.css";
+		 link.rel = 'stylesheet';
+		 link.type = 'text/css';
+		 head.appendChild(link);
+	} */
+</script>
+</head>
+<body>
+	<div class="head">
+	<div class="head-inner">
+		<div class="head-top">
+			<div id="admin-top-title">
+				<label id="head-top-title">PMQ管理界面</label>
+				<div id="admin-set-out">
+					<ul id="admin-set">
+						欢迎
+						<span id="adminName"></span>!▼
+						<li onClick="openHeadUpdatePass()">密码设置</li>
+						<li onClick="logout()">安全退出</li>
+					</ul>
+					<!-- <button onClick="passSet()" class="head-top-but">密码设置</button>
+					<button onClick="logout()" class="head-top-but">安全退出</button> -->
+				</div>
+			</div>
+			<!-- <div id="admin-set-out">
+				<ul id="admin-set">
+					欢迎
+					<span id="adminName"></span>!▼
+					<li onClick="openHeadUpdatePass()">密码设置</li>
+					<li onClick="logout()">安全退出</li>
+				</ul>
+				<button onClick="passSet()" class="head-top-but">密码设置</button>
+				<button onClick="logout()" class="head-top-but">安全退出</button>
+			</div> -->
+		</div>
+		<nav>
+			<ul>
+				<li><button onClick="setUrl('paper')" id="head-nav-paper"
+						class="head-top-nav">测试者管理</button></li>
+				<li><button onClick="setUrl('ques')" id="head-nav-ques">题库管理</button></li>
+				<li><button onClick="setUrl('eva')" id="head-nav-eva">等级评价管理</button></li>
+				<li id="second"><button id="head-nav-target">职位指标管理</button>
+					<ul class="second">
+						<li class="secondNav" onClick="setUrl('post')"
+							id="head-nav-target-post">测试职位管理</li>
+						<li class="secondNav" onClick="setUrl('target')"
+							id="head-nav-target">试卷属性管理</li>
+					</ul></li>
+				<li><button onClick="setUrl('admin')" id="head-nav-admin">管理员管理</button></li>
+			</ul>
+		</nav>
+	</div>
+	</div>
+	<hr id="head-hr"/>
+	<div id="head-content"></div>
+</body>
+<div id="mask" hidden=true></div>
+<div class="headUpdatePass-dowebok" hidden="hidden">
+	<h3>重置密码操作</h3>
+	<div class="headUpdatePass-item">
+		<span>旧&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码 : </span> <input
+			type="text" id="oldPass" maxlength="25" placeholder="请输入旧密码"></input> <span class="tip" id="tip-oldPass">请输入旧密码</span>
+	</div>
+	<div class="headUpdatePass-item">
+		<span>新&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码 : </span> <input
+			type="password" id="newPass" maxlength="25" placeholder="请输入新密码"></input> <span
+			class="tip" id="tip-newPass">新密码为1至25个字符</span>
+	</div>
+	<div class="headUpdatePass-item">
+		<span>新&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码 : </span> <input type="password"
+			id="reNewPass" maxlength="25" placeholder="请再次输入新密码"></input> <span class="tip" id="tip-reNewPass">两次密码输入不一致</span>
+	</div>
+	<div class="headUpdatePass-button">
+		<button id="headUpdatePass-submit" onClick="headUpdatePass()">确定</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button onClick="quitHeadUpdatePass()">返回</button>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/operateCSS/headUpdatePass.css" />
+</html>

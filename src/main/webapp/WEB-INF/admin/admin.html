@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/css/admin.css" />
+<link href="/PMQ/static/admin/operateCSS/addAdmin.css" rel="stylesheet"
+	type="text/css" />
+<script src="/PMQ/static/admin/js/admin.js"></script>
+</head>
+<body>
+	<div id="admin">
+		<div id="admin-manage">
+		<div class="opt-div-but-common">
+			<form id="search-form">
+				<span>管理员职位:</span>
+				<select name="rank" class="opt-condic-common">
+				<option value="0">所有</option><option value="1">超级管理员</option><option value="2">普通管理员</option></select>
+				<span>姓名:</span><input type="text" name="name" class="opt-condic-common">
+			</form>
+		</div>
+		<div class="opt-div-but-common">
+			<button class="opt-but-common" onClick="searchBy()">查询</button>
+			<button class="opt-but-common" onClick="clearInput()">清空</button>
+		</div>
+		<hr class="opt-hr-common">
+		
+			<button id="add-but" onClick="openAddAdmin()">+增加管理员</button>
+			<table cellspacing="0">
+				<thead align="left">
+					<tr>
+						<th>序号</th>
+						<th>职位</th>
+						<th>姓名</th>
+						<th>登录ID</th>
+						<th>密码</th>
+						<th>创建时间</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<div id="tfoot">
+				<button onClick="jumpStart()">第一页</button>
+				<button onClick="jumpPre()">上一页</button>
+				<button onClick="jumpNext()">下一页</button>
+				<button onClick="jumpEnd()">最后一页</button>
+				第<span id="spanCurrentPage"></span>页/共<span id="spanTotalPage"></span>页
+			</div>
+		</div>
+	</div>
+</body>
+<div class="addAdmin-dowebok" hidden="hidden">
+	<h3>增加管理员操作</h3>
+	<form id="form-add">
+		<div class="addAdmin-item" id="addAdmin-position">
+			<span>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位 : </span> 
+				<select name="rank"><option value="2">普通管理员</option>
+				<option value="1">超级管理员</option></select>		
+		</div>
+		<div class="addAdmin-item">
+			<span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名 : </span>
+			<input type="text" name="name" maxlength="25" id="add-name">
+			<span class="tip" id="tip-add-name">姓名为2到6个字符</span>
+		</div>
+		<div class="addAdmin-item">
+			<span>登&nbsp;&nbsp;&nbsp;录&nbsp;&nbsp;&nbsp;ID : </span>
+			<input type="text" name="user" maxlength="15" id="add-userid"></input>
+			<span class="tip" id="tip-add-userid">登录id为1到25个字符</span>
+		</div>
+		<div class="addAdmin-item">
+			<span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码 : 
+			</span><input type="text" name="pass" maxlength="25" id="add-pass"></input>
+			<span class="tip" id="tip-add-pass">密码为1到25个字符</span>
+		</div>
+		<div class="addAdmin-item">
+			<span>重&nbsp;复&nbsp;密&nbsp;码 : </span>
+			<input type="text" name="repass" maxlength="25" id="add-repass"></input>
+			<span class="tip" id="tip-add-repass">密码为1到25个字符</span>
+		</div>
+	</form>
+	<div class="addAdmin-button">
+		<button id="addAdmin-submit" onClick="addAdmin()">确定</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button onClick="quitAddAdmin()">返回</button>
+	</div>
+</div>
+<div id="updateAdmin-div" hidden="hidden">
+	<h3>重置管理员操作</h3>
+	<form id="form-update">
+	<input type="number" name="adminId" hidden="hidden" id="update-id">
+		<div>
+			<span>职&nbsp;&nbsp;位：</span> <select name="rank" id="update-rank"><option value="1">超级管理员</option>
+				<option value="2">普通管理员</option></select>
+		</div>
+		<div>
+			<span>姓&nbsp;&nbsp;名：</span><input type="text" id="update-name" name="name" maxlength="25"></input>
+			<span class="mytip" id="tip-update-name">姓名为2到6个字符</span>
+		</div>
+		<div>
+			<span>密&nbsp;&nbsp;码：</span><input type="password" id="update-pass" name="pass" ></input>
+			<span class="mytip"  id="tip-update-pass">密码为1到25个字符</span>
+		</div>
+		<div>
+			<span>重复密码 : </span>
+			<input type="password" name="repass" id="update-repass"></input>
+			<span class="mytip"  id="tip-update-repass"></span>
+		</div>
+	</form>
+	<div>
+		<button onClick="updateAdmin()">提交</button>
+		<button onClick="quitUpdateAdmin()">返回</button>
+	</div>
+</div>
+</html>

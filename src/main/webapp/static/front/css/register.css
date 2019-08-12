@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	background: #fff url(../images/register-background.jpeg) no-repeat;
+	/* background: #fff url(../images/register-background.jpeg); */
+}
+
+.dowebok {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 650px;
+	height: 550px;
+	margin: -300px 0 0 -315px;
+	overflow: hidden;
+}
+
+.text1 {
+	font-family: 'SimHei';
+	font-weight: 700;
+	font-size: 32px;
+	color: #000099;
+	text-align: center;
+	padding-bottom: 45px;
+	letter-spacing: 5px;
+}
+
+.text2 {
+	font-family: 'KaiTi';
+	font-weight: bolder;
+	font-size: 29px;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.text3 {
+	font-family: 'KaiTi';
+	font-weight: bold;
+	font-size: 19px;
+	text-align: center;
+	color: #FF0000;
+	padding-bottom: 35px;
+}
+
+.form-item {
+	position: relative;
+	width: 310px;
+	margin: 0 auto;
+	padding-bottom: 53px;
+}
+
+.form-item input {
+	width: 296px;
+	height: 30px;
+	padding-left: 20px;
+	border: 1px solid #797979;
+	border-radius: 25px;
+	font-size: 13px;
+	color: #000000;
+	background-color: rgba(204, 255, 255, 0.6);
+	outline: none;
+}
+
+.form-item select {
+	width: 310px;
+	height: 30px;
+	padding-left: 20px;
+	border: 1px solid #797979;
+	border-radius: 25px;
+	font-size: 13px;
+	color: #000000;
+	background-color: rgba(204, 255, 255, 0.6);
+	outline: none;
+}
+
+.form-item button {
+	position: relative;
+	left: 350px;
+	top: -80px;
+	border: 0;
+	font-size: 18px;
+	color: #FF0000;
+	outline: none;
+	cursor: pointer;
+	background-color: transparent;
+	letter-spacing: 3px;
+}
+
+.tip {
+	display: none;
+	position: absolute;
+	left: 20px;
+	top: 36px;
+	font-size: 14px;
+	color: #f50;
+}
+
+#submit {
+	background: url(../images/register-arrow.png) 26px 5px no-repeat;
+}
+
+#submit:hover {
+	color: #000;
+}
+
+.dowebok ::-webkit-input-placeholder {
+	font-size: 13px;
+	line-height: 1.4;
+	color: #000;
+}
+
+.dowebok :-moz-placeholder {
+	font-size: 13px;
+	line-height: 1.4;
+	color: #000;
+}
+
+.dowebok ::-moz-placeholder {
+	font-size: 13px;
+	line-height: 1.4;
+	color: #000;
+}
+
+.dowebok :-ms-input-placeholder {
+	font-size: 13px;
+	line-height: 1.4;
+	color: #000;
+}

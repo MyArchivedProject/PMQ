@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.addPost-dowebok {
+	position: absolute;
+	left: 25%;
+	top: 35%;
+	width: 650px;
+	height: 250px;
+/* 	margin: -300px 0 0 -215px; */
+	border: 3px solid #f0f0f0;
+	z-index: 999;
+	background-color: white;
+	
+}
+
+h3 {
+	padding: 10px 10px 10px;
+	background-color: #f0f0f0;
+}
+
+.addPost-item, .addPost-button {
+/* 	 padding: 10px;  */
+	text-align: center;
+}
+
+.addPost-button button {
+	margin-top: 10px;
+	width: 80px;
+	height: 30px;
+	font-size: 15px;
+	border-radius: 20px;
+	border: 1px solid #000;
+	outline: none;
+}
+
+#addPost-submit {
+	background-color: #87cefa;
+}
+#tip-addPost{
+	color: red;
+}

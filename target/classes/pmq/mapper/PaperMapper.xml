@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmq.dao.PaperMapper">
+	<resultMap id="BaseResultMap" type="pmq.pojo.Paper">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="tester_id" property="testerId" jdbcType="INTEGER" />
+		<result column="index_f" property="indexF" jdbcType="VARCHAR" />
+		<result column="index_id" property="indexId" jdbcType="INTEGER" />
+		<result column="question" property="question" jdbcType="VARCHAR" />
+		<result column="des" property="des" jdbcType="VARCHAR" />
+		<result column="option_a" property="optionA" jdbcType="VARCHAR" />
+		<result column="score_a" property="scoreA" jdbcType="INTEGER" />
+		<result column="option_b" property="optionB" jdbcType="VARCHAR" />
+		<result column="score_b" property="scoreB" jdbcType="INTEGER" />
+		<result column="option_c" property="optionC" jdbcType="VARCHAR" />
+		<result column="score_c" property="scoreC" jdbcType="INTEGER" />
+		<result column="option_d" property="optionD" jdbcType="VARCHAR" />
+		<result column="score_d" property="scoreD" jdbcType="INTEGER" />
+		<result column="option_e" property="optionE" jdbcType="VARCHAR" />
+		<result column="score_e" property="scoreE" jdbcType="INTEGER" />
+		<result column="option_f" property="optionF" jdbcType="VARCHAR" />
+		<result column="score_f" property="scoreF" jdbcType="INTEGER" />
+		<result column="top" property="top" jdbcType="INTEGER" />
+		<result column="objsub" property="objsub" jdbcType="INTEGER" />
+		<result column="flag" property="flag" jdbcType="INTEGER" />
+		<result column="answer" property="answer" jdbcType="VARCHAR" />
+		<result column="score" property="score" jdbcType="INTEGER" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from paper
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="pmq.pojo.Paper">
+		insert into paper (
+		tester_id,
+		index_f,
+		index_id, question, des,
+		option_a, score_a,
+		option_b,
+		score_b,
+		option_c, score_c,
+		option_d, score_d, option_e,
+		score_e, option_f,
+		score_f,
+		top, objsub, flag,
+		answer, score)
+		values
+		(
+		#{testerId,jdbcType=INTEGER},
+		#{indexF,jdbcType=VARCHAR},
+		#{indexId,jdbcType=INTEGER},
+		#{question,jdbcType=VARCHAR},
+		#{des,jdbcType=VARCHAR},
+		#{optionA,jdbcType=VARCHAR},
+		#{scoreA,jdbcType=INTEGER},
+		#{optionB,jdbcType=VARCHAR},
+		#{scoreB,jdbcType=INTEGER},
+		#{optionC,jdbcType=VARCHAR},
+		#{scoreC,jdbcType=INTEGER},
+		#{optionD,jdbcType=VARCHAR},
+		#{scoreD,jdbcType=INTEGER},
+		#{optionE,jdbcType=VARCHAR},
+		#{scoreE,jdbcType=INTEGER},
+		#{optionF,jdbcType=VARCHAR},
+		#{scoreF,jdbcType=INTEGER},
+		#{top,jdbcType=INTEGER},
+		#{objsub,jdbcType=INTEGER},
+		#{flag,jdbcType=INTEGER},
+		#{answer,jdbcType=VARCHAR},
+		#{score,jdbcType=INTEGER})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="pmq.pojo.Paper">
+		update paper
+		set
+		tester_id = #{testerId,jdbcType=INTEGER},
+		index_f =
+		#{indexF,jdbcType=VARCHAR},
+		index_id = #{indexId,jdbcType=INTEGER},
+		question = #{question,jdbcType=VARCHAR},
+		des = #{des,jdbcType=VARCHAR},
+		option_a = #{optionA,jdbcType=VARCHAR},
+		score_a =
+		#{scoreA,jdbcType=INTEGER},
+		option_b = #{optionB,jdbcType=VARCHAR},
+		score_b = #{scoreB,jdbcType=INTEGER},
+		option_c =
+		#{optionC,jdbcType=VARCHAR},
+		score_c = #{scoreC,jdbcType=INTEGER},
+		option_d = #{optionD,jdbcType=VARCHAR},
+		score_d =
+		#{scoreD,jdbcType=INTEGER},
+		option_e = #{optionE,jdbcType=VARCHAR},
+		score_e = #{scoreE,jdbcType=INTEGER},
+		option_f =
+		#{optionF,jdbcType=VARCHAR},
+		score_f = #{scoreF,jdbcType=INTEGER},
+		top =
+		#{top,jdbcType=INTEGER},
+		objsub = #{objsub,jdbcType=INTEGER},
+		flag =
+		#{flag,jdbcType=INTEGER},
+		answer = #{answer,jdbcType=VARCHAR},
+		score =
+		#{score,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, tester_id, index_f, index_id, question, des,
+		option_a, score_a,
+		option_b,
+		score_b, option_c, score_c, option_d,
+		score_d, option_e, score_e, option_f,
+		score_f,
+		top, objsub, flag,
+		answer, score
+		from paper
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, tester_id, index_f,
+		index_id, question, des, option_a, score_a,
+		option_b,
+		score_b, option_c,
+		score_c, option_d, score_d, option_e, score_e, option_f,
+		score_f,
+		top,
+		objsub, flag, answer, score
+		from paper
+	</select>
+
+	<select id="selectAllByTesterId" resultMap="BaseResultMap">
+		select id, tester_id,
+		index_f, index_id, question, des, option_a,
+		score_a, option_b,
+		score_b,
+		option_c, score_c, option_d, score_d, option_e, score_e, option_f,
+		score_f,
+		top, objsub, flag, answer, score
+		from paper
+		where tester_id =
+		#{testerId,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectAllByTeacher" resultMap="BaseResultMap">
+		select id, tester_id,
+		index_f, index_id, question, des, option_a,
+		score_a, option_b,
+		score_b,
+		option_c, score_c, option_d, score_d, option_e, score_e, option_f,
+		score_f,
+		top, flag, answer, score
+		from paper
+		where tester_id =
+		#{testerId,jdbcType=INTEGER} and objsub=1
+	</select>
+
+	<update id="updateSubScore" parameterType="java.util.HashMap">
+		<foreach collection="allScore.entrySet()" index="key" item="value"
+			open="" close="" separator=";">
+			update paper
+			set score =#{value}
+			where id
+			=#{key}
+		</foreach>
+	</update>
+
+	<insert id="insertPapers" parameterType="java.util.List">
+		insert into
+		paper (
+		tester_id,
+		index_f,
+		index_id, question, des,
+		option_a, score_a,
+		option_b,
+		score_b,
+		option_c, score_c,
+		option_d, score_d, option_e,
+		score_e, option_f,
+		score_f,
+		top, objsub, flag,
+		answer, score)
+		values
+		<foreach collection="list" item="paper" separator="," >			
+			(#{paper.testerId,jdbcType=INTEGER},
+			#{paper.indexF,jdbcType=VARCHAR},
+			#{paper.indexId,jdbcType=INTEGER},
+			#{paper.question,jdbcType=VARCHAR},
+			#{paper.des,jdbcType=VARCHAR},
+			#{paper.optionA,jdbcType=VARCHAR},
+			#{paper.scoreA,jdbcType=INTEGER},
+			#{paper.optionB,jdbcType=VARCHAR},
+			#{paper.scoreB,jdbcType=INTEGER},
+			#{paper.optionC,jdbcType=VARCHAR},
+			#{paper.scoreC,jdbcType=INTEGER},
+			#{paper.optionD,jdbcType=VARCHAR},
+			#{paper.scoreD,jdbcType=INTEGER},
+			#{paper.optionE,jdbcType=VARCHAR},
+			#{paper.scoreE,jdbcType=INTEGER},
+			#{paper.optionF,jdbcType=VARCHAR},
+			#{paper.scoreF,jdbcType=INTEGER},
+			#{paper.top,jdbcType=INTEGER},
+			#{paper.objsub,jdbcType=INTEGER},
+			#{paper.flag,jdbcType=INTEGER},
+			#{paper.answer,jdbcType=VARCHAR},
+			#{paper.score,jdbcType=INTEGER})
+		</foreach>
+	</insert>
+	
+	<!-- <select id="selectScoresByIndexF" resultType="pmq.pojo.ToTesterScoreByIndexF">
+		select sum(score) as score
+		,index_f as indexF
+		from paper
+		where tester_id= #{testerId}
+		group by index_f
+		select sum(score)
+		from paper
+		where tester_id= #{testerId} and index_f=#{indexF}	
+	</select> -->
+	
+</mapper>

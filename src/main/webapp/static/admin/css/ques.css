@@ -1,0 +1,90 @@
+/* 操作按钮和查询条件的修饰 */
+#operate{
+	border: 1px solid #F8F8FF;
+	margin: 10px 0px;
+	width: 100%;
+}
+.opt-div-con{
+	margin-bottom: 10px;
+ 	white-space:nowrap; 
+}
+.opt-condic{
+	margin-right: 50px;
+}
+#opt-div-but{
+	margin: 10px 0px;
+	white-space:nowrap; 
+}
+.opt-but{
+	background-color:#F2F2F2;
+	font-size:17px;
+	outline:none;
+	border-radius:10px;
+	border:0px;
+	margin-right: 30px;
+}
+.opt-but:hover{
+	color:blue;
+}
+/* 表格的修饰 */
+table{
+	width: 100%;
+}
+thead tr{
+	background-color: #CFECEC;
+	text-shadow: 0px 5px 3px rgba(0, 0, 0, 0.15);
+}
+thead tr th{
+	padding: 0px 10px 0px 10px ;
+} 
+thead tr th button{
+	background-color: transparent;
+	outline: none;
+	border: 0px;
+	font-weight:bold;
+}
+thead tr th button:hover{
+	
+	color: blue;
+}
+.tick {
+	border-radius: 5px;
+	padding: 0 0;
+	zoom: 180%;
+	margin: 50% 10%;
+}
+thead {
+	font-size: 12px;
+}
+
+tbody {
+	font-size: 10px;
+}
+
+ #import-dialog {
+	position: absolute;
+	height: 360px;
+	width: 400px;
+	left: 25%;
+	top: 25%;
+	z-index: 999;
+}
+#tfoot {
+	text-align: right;
+}
+#tfoot button{
+	background-color:#F2F2F2;
+	font-size:15px;
+	outline:none;
+	border-radius:10px;
+	border:0px;
+	border-radius: 4px;
+}
+#tfoot button:hover{
+	color:blue;
+}
+@media screen and (max-width: 1024px) {
+    #ques-manage{
+      width: 1024px;
+    }
+ }

@@ -1,0 +1,109 @@
+@charset "utf-8";
+.file {
+	height: 360px;
+	width: 400px;
+	padding: 50px;
+	background-color: #ffffff;
+	border: 3px solid #93defe;
+	border-radius: 6px;
+	box-sizing: border-box;
+	margin-right: 50px;
+	position: relative;
+	margin-top: 50px;
+}
+
+.file-logo {
+	width: 120px;
+	height: 120px;
+	border: 3px solid #93defe;
+	border-radius: 100px;
+	background: #fff;
+	text-align: center;
+	line-height: 110px;
+	position: absolute;
+	top: -60px;
+	right: 140px;
+}
+
+.file-name {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.file-name p {
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+	color: #444;
+	padding: 10px 0 50px;
+}
+
+.file-logo img {
+	width: 60px;
+	height: 60px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.file-choose {
+	margin-left: 90px;
+	display: inline-block;
+	background: #D0EEFF;
+	border: 1px solid #99D3F5;
+	border-radius: 4px;
+	padding: 10px 18px;
+	overflow: hidden;
+	font-size: 20px;
+	color: #1E88C7;
+	text-decoration: none;
+	text-indent: 0;
+	line-height: 20px;
+}
+
+.file-choose input {
+	position: absolute;
+	right: 0;
+	top: 0;
+	opacity: 0;
+}
+
+.file-choose:hover {
+	background: #AADFFD;
+	border-color: #78C3F3;
+	color: #004974;
+	text-decoration: none;
+}
+
+#file-cancel {
+	position: relative;
+	left: 0px;
+	top: 50px;
+	background: #fff;
+	border: 1px solid #dcdcdc;
+	border-radius: 4px;
+	padding: 6px 40px;
+	text-decoration: none;
+}
+
+#file-cancel:hover {
+	background: #dcdcdc;
+	text-decoration: none;
+}
+
+#file-submit {
+	position: relative;
+	left: 60px;
+	top: 50px;
+	background: #fff;
+	border: 1px solid #dcdcdc;
+	border-radius: 4px;
+	padding: 6px 40px;
+	text-decoration: none;
+}
+
+#file-submit:hover {
+	background: #f08080;
+	text-decoration: none;
+}

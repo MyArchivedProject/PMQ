@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/css/eva.css" />
+<script src="/PMQ/static/admin/js/eva.js"></script>
+</head>
+<body>
+	<div id="eva">
+		<div id="eva-manage">
+			<div>
+				<div class="opt-div-but-common">
+					<form id="select-form">
+						<span>职位:</span><input type="text" id="by-post" class="opt-condic-common">
+						<span>名称:</span><input type="text" id="by-title" class="opt-condic-common"> 
+						<span>状态:</span> <select
+							id="by-flag" id="by-flag">
+							<option value="2">所有</option>
+							<option value="1">活动</option>
+							<option value="0">暂停</option>
+						</select>
+					</form>
+				</div>
+				<div class="opt-div-but-common">
+					<button class="opt-but-common " onClick="selectBy()">查询</button>
+					<button class="opt-but-common " onClick="clearInput()">清空</button>
+				</div>
+				<hr class="opt-hr-common">
+			</div>
+			<button id="add-but" onClick="openAddEva()">+增加等级评价</button>
+			<table cellspacing="0">
+				<thead align="left">
+					<tr>
+						<th>序号</th>
+						<th>职位</th>
+						<th>名称</th>
+						<!--<th>二级指标</th>
+						<th>等级A</th>
+						<th>最低分</th>
+						<th>等级B</th>
+						<th>最低分</th>
+						<th>等级C</th>
+						<th>最低分</th>
+						<th>等级D</th>
+						<th>最低分</th>
+						<th>等级E</th>
+						<th>最低分</th>
+						<th>等级F</th>
+						<th>最低分</th> -->
+						<th>状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<div id="tfoot">
+				<button onClick="jumpStart()">第一页</button>
+				<button onClick="jumpPre()">上一页</button>
+				<button onClick="jumpNext()">下一页</button>
+				<button onClick="jumpEnd()">最后一页</button>
+				第<span id="spanCurrentPage"></span>页/共<span id="spanTotalPage"></span>页
+			</div>
+		</div>
+	</div>
+</body>
+<div class="updateEva-dowebok" hidden="hidden">
+	<!-- 	查看等级并可以进行修改 -->
+	<h3>修改等级评价操作</h3>
+	<p id="myTip">提示：等级评价名称不能超过25个字符，等级评价内容不能超过500个字符，最低分不能大于5位数</p>
+	<form id="form-update">
+		<input id="update-id" name="id" hidden="true"></input>
+		<div style="text-align: center; padding: 0 0 10px;">
+			<span>职位 : </span> <input type="text" id="update-post" name="post"
+				readonly>
+		</div>
+		<div style="text-align: center; padding: 10px 0 10px;">
+			<span>名称 : </span> <input type="text" id="update-title"
+				name="title"  maxLength="25" ></input>
+			<span>状态</span> <select id="update-flag" name="flag">
+				<option value="0">暂停</option>
+				<option value="1">活动</option>
+			</select>
+		</div>
+		<div class="updateEva-option">
+			<span>等级A : </span>
+			<textarea rows="1" cols="40" id="update-evaA" name="evaA" maxLength="500"></textarea>
+			<div class="updateEva-score">
+				<span>最低分 : </span><input type="number" id="update-miniA"
+					name="miniA" oninput="if(value.length>5)value=value.slice(0,5)">
+			</div>
+		</div>
+		<div class="updateEva-option">
+			<span>等级B : </span>
+			<textarea rows="1" cols="40" id="update-evaB" name="evaB" maxLength="500"></textarea>
+			<div class="updateEva-score">
+				<span>最低分 : </span><input type="number" id="update-miniB"
+					name="miniB" oninput="if(value.length>5)value=value.slice(0,5)">
+			</div>
+		</div>
+		<div class="updateEva-option">
+			<span>等级C : </span>
+			<textarea rows="1" cols="40" id="update-evaC" name="evaC" maxLength="500"></textarea>
+			<div class="updateEva-score">
+				<span>最低分 : </span><input type="number" id="update-miniC"
+					name="miniC" oninput="if(value.length>5)value=value.slice(0,5)">
+			</div>
+		</div>
+		<div class="updateEva-option">
+			<span>等级D : </span>
+			<textarea rows="1" cols="40" id="update-evaD" name="evaD" maxLength="500"></textarea>
+			<div class="updateEva-score">
+				<span>最低分 : </span><input type="number" id="update-miniD"
+					name="miniD" oninput="if(value.length>5)value=value.slice(0,5)">
+			</div>
+		</div>
+		<div class="updateEva-option">
+			<span>等级E : </span>
+			<textarea rows="1" cols="40" id="update-evaE" name="evaE" maxLength="500"></textarea>
+			<div class="updateEva-score">
+				<span>最低分 : </span><input type="number" id="update-miniE"
+					name="miniE" oninput="if(value.length>5)value=value.slice(0,5)">
+			</div>
+		</div>
+		<div class="updateEva-option">
+			<span>等级F : </span>
+			<textarea rows="1" cols="40" id="update-evaF" name="evaF" maxLength="500"></textarea>
+			<div class="updateEva-score">
+				<span>最低分 : </span><input type="number" id="update-miniF"
+					name="miniF" oninput="if(value.length>5)value=value.slice(0,5)">
+			</div>
+		</div>
+		<div class="updateEva-option">
+			<span>所包含的二级指标 : </span>
+
+			<div id="update-indexS"></div>
+		</div>
+
+	</form>
+	<div class="updateEva-button">
+		<button id="updateEva-submit" onClick="updateEva()">更新</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button onClick='quitUpadteEva()'>返回</button>
+	</div>
+</div>
+
+<div class="addEva-dowebok" hidden="hidden">
+	<!-- 	增加等级评价操作 -->
+	<h3>增加等级评价操作</h3>
+	<p id="myTip">提示：等级评价名称不能超过25个字符，等级评价内容不能超过500个字符，最低分不能大于5位数</p>
+	<form id="form-add">
+		<div style="text-align: center; padding: 0 0 10px;">
+			<span>职位 : </span> <select id="add-post" name="post"
+				onChange="fromPostToIndexS(this)">
+			</select>
+			<span>状态</span> <select id="add-flag" name="flag">
+				<option value="0">暂停</option>
+				<option value="1">活动</option>
+			</select>
+		</div>
+		<div style="text-align: center; padding: 10px 0 10px;">
+			<span>等级评价名称 : </span> 
+			<input type="text" id="add-title" name="title" maxLength="25" placeholder="必填项"></input>
+		</div>
+
+		<div class="addEva-option">
+			<span>等级A : </span>
+			<textarea rows="1" cols="40" id="add-evaA" name="evaA" maxLength="500"></textarea>
+			<div class="addEva-score">
+				<span>最低分 : </span><input type="number" id="add-miniA" name="miniA" oninput="if(value.length>5)value=value.slice(0,5)" >
+			</div>
+		</div>
+		<div class="addEva-option">
+			<span>等级B : </span>
+			<textarea rows="1" cols="40" id="add-evaB" name="evaB" maxLength="500"></textarea>
+			<div class="addEva-score">
+				<span>最低分 : </span><input type="number" id="add-miniB" name="miniB">
+			</div>
+		</div>
+		<div class="addEva-option">
+			<span>等级C : </span>
+			<textarea rows="1" cols="40" id="add-evaC" name="evaC" maxLength="500"></textarea>
+			<div class="addEva-score">
+				<span>最低分 : </span><input type="number" id="add-miniC" name="miniC">
+			</div>
+		</div>
+		<div class="addEva-option">
+			<span>等级D : </span>
+			<textarea rows="1" cols="40" id="add-evaD" name="evaD" maxLength="500"></textarea>
+			<div class="addEva-score">
+				<span>最低分 : </span><input type="number" id="add-miniD" name="miniD">
+			</div>
+		</div>
+		<div class="addEva-option">
+			<span>等级E : </span>
+			<textarea rows="1" cols="40" id="add-evaE" name="evaE" maxLength="500"></textarea>
+			<div class="addEva-score">
+				<span>最低分 : </span><input type="number" id="add-miniE" name="miniE">
+			</div>
+		</div>
+		<div class="addEva-option">
+			<span>等级F : </span>
+			<textarea rows="1" cols="40" id="add-evaF" name="evaF" maxLength="500"></textarea>
+			<div class="addEva-score">
+				<span>最低分 : </span><input type="number" id="add-miniF" name="miniF">
+			</div>
+		</div>
+		<div class="addEva-option">
+			<span>所包含的二级指标 : </span>
+			<div id="add-indexS"></div>
+		</div>
+
+	</form>
+	<div class="addEva-button">
+		<button id="addEva-submit" onClick="addEva()">确定</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button onClick="quitAddEva()">返回</button>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/operateCSS/updateEva.css" />
+<link rel="stylesheet" type="text/css"
+	href="/PMQ/static/admin/operateCSS/addEva.css" />
+</html>
